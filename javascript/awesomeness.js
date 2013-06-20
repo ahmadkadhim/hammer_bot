@@ -5,26 +5,26 @@
     return $(document).keydown(function(e) {
       var direction;
       direction = {};
-      console.log(e.keycode);
-      if (e.keycode === 37) {
+      console.log(e.keyCode);
+      if (e.keyCode === 37) {
         direction = {
           forward: 1,
           turn: 1,
           strafe: 0
         };
-      } else if (e.keycode === 38) {
+      } else if (e.keyCode === 38) {
         direction = {
           forward: 1,
           turn: 0,
           strafe: 0
         };
-      } else if (e.keycode === 39) {
+      } else if (e.keyCode === 39) {
         direction = {
           forward: 1,
           turn: -1,
           strafe: 0
         };
-      } else if (e.keycode === 40) {
+      } else if (e.keyCode === 40) {
         direction = {
           forward: -1,
           turn: 0,
