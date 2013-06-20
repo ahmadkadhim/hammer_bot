@@ -5,11 +5,11 @@ bluetooth = true
 moch = ( process.argv.indexOf("--dry-run") != -1 );
 
 if bluetooth
-  opts = 
+  opts =
     port: "/dev/tty.FireFly-FC8C-RNI-SPP"
     baud: 115200
 else
-  opts = 
+  opts =
     port: "/dev/tty.usbserial-A9007MTf"
     baud: 9600
 
@@ -57,7 +57,7 @@ app.get '/motion-control/update', (req, res) ->
   # Updating the motors
   bot.set_motor motor, to: v for motor, v of motorOutputs
 
-  res.jsonp("ACK");
+  res.jsonp("ACK")
 
 
 app.listen(8071)
