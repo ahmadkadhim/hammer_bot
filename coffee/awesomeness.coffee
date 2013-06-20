@@ -5,17 +5,17 @@ $(document).ready ->
 
     $(document)keydown e ->
         direction = {}
-        console.log(e.keycode)
-        if e.keycode == 37 #left
+        console.log(e.keyCode)
+        if e.keyCode == 37 #left
             direction = {forward: 1, turn: 1, strafe: 0}
 
-        else if e.keycode == 38 #up
+        else if e.keyCode == 38 #up
             direction = {forward: 1, turn: 0, strafe: 0}
 
-        else if e.keycode == 39 #right
+        else if e.keyCode == 39 #right
             direction = {forward: 1, turn: -1, strafe: 0}
 
-        else if e.keycode == 40 #down
+        else if e.keyCode == 40 #down
             direction = {forward: -1, turn: 0, strafe: 0}
 
         $.ajax("http://127.0.0.1:8071/motion-control/update", {
