@@ -45,7 +45,7 @@
           direction = {};
           $("#stop").css("background-color", "rgba(233,22,99,.8)");
       }
-      return $.ajax("http://127.0.0.1:8071/motion-control/update", {
+      return $.ajax("http://192.168.0.105:8071/motion-control/update", {
         data: direction,
         dataType: "jsonp"
       });
