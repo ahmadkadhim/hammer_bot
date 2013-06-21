@@ -24,7 +24,22 @@ $(document).ready ->
       when 68 then direction = #d (strafe)
         strafe: 1
 
-    $.ajax "http://127.0.0.1:8071/motion-control/update",
+    $.ajax "http://192.168.0.105:8071/motion-control/update",
         data: direction
         dataType: "jsonp"
+
+  # dance ->
+  #   moves = [0,37,38,39,40,65,68]
+  #   e = $.Event("keydown")
+  #   e.which = moves[Math.floor(Math.random()*7)]
+  #   $(document).trigger(e)
+
+
+  # $("#target").on "click" ->
+  #   for i in [0..10]
+  #     setInterval ->
+  #       dance
+  #       ,4000
+
+
 
