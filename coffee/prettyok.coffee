@@ -4,29 +4,45 @@ $(document).ready ->
     direction = {}
 
     switch e.keyCode
-      when 37 then direction = #left
-        forward: 1
+      when 37
+        direction = #left (strafe)
+          strafe: -1
+
+        $("#left").css("background-color","rgba(233,22,99,.8)");
+      when 38
+        direction = #up
+          forward: 1
+
+        $("#up").css("background-color","rgba(233,22,99,.8)");
+      when 39
+        direction = #right (strafe)
+          strafe: 1
+
+        $("#right").css("background-color","rgba(233,22,99,.8)");
+      when 40
+        direction = #down
+          forward: -1
+        $("#down").css("background-color","rgba(233,22,99,.8)");
+      when 65 then direction = #a (turn left)
         turn: -1
-
-      when 38 then direction = #up
         forward: 1
 
-      when 39 then direction = #right
-        forward: 1
+      when 68 then direction = #d (turn right)
         turn: 1
+        forward: 1
 
-      when 40 then direction = #down
-        forward: -1
+      when 32
+        direction = {}
 
-      when 65 then direction = #a (strafe)
-        strafe: -1
-
-      when 68 then direction = #d (strafe)
-        strafe: 1
-
-    $.ajax "http://192.168.0.105:8071/motion-control/update",
+        $("#stop").css("background-color","rgba(233,22,99,.8)");
+#192.168.0.105
+    $.ajax "http://127.0.0.1:8071/motion-control/update",
         data: direction
         dataType: "jsonp"
+
+  $(document).keyup (e) ->
+    $(".arrow").css("background-color","rgba(1,204,124,.6)")
+
 
   # dance ->
   #   moves = [0,37,38,39,40,65,68]
