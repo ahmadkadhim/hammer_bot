@@ -6,41 +6,45 @@ $(document).ready ->
     39: direction: {strafe:  -1}, id: "right"
     40: direction: {forward: -1}, id: "down"
 
-  $(document).keydown (e) ->
-    direction = {}
-    selected = keyMap[e.keyCode]
+  class PressKeys
 
-    $("##{selected.id}").addClass("selected")
+    $(document).keydown (e) ->
 
-    $.ajax "http://127.0.0.1:8071/motion-control/update", #server: 192.168.0.105
-        data: selected.direction
-        dataType: "jsonp"
+      pressed = keyMap[e.keyCode]
+      direction = {}
 
-  $(document).keyup (e) ->
-    $("##{selected.id}").removeClass("selected")
-    # $(".arrow").css("background-color","rgba(1,204,124,.6)")
+      $("##{keyMap[e.keyCode].id}").addClass("selected")
 
+      $.ajax "http://127.0.0.1:8071/motion-control/update", #server: 192.168.0.105
+          data: keyMap[e.keyCode].direction
+          dataType: "jsonp"
 
-
-
-
-
-# class Dance
-#   start ->
-#     moves = [0,37,38,39,40,65,68]
-#     e = $.Event("keydown")
-#     e.which = moves[Math.floor(Math.random()*7)]
-#     $(document).trigger(e)
-#     console.log e
+    $(document).keyup (e) ->
+      $("##{keyMap[e.keyCode].id}").removeClass("selected")
+      # $(".arrow").css("background-color","rgba(1,204,124,.6)")
 
 
 
 
-  # $("#target").on "click" ->
-  #   for i in [0..10]
-  #     setInterval ->
-  #       dance
-  #       ,4000
+  # class Dance
+  #   moves = [0,37,38,39,40,65,68]
+
+  #   start: (duration) ->
+  #     now = new Date
+
+
+
+
+
+  human = new PressKeys
+
+
+
+  # moonwalk = new Dance
+  # moonwalk.start()
+
+
+
 
 
 
