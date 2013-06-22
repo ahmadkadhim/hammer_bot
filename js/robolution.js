@@ -108,27 +108,39 @@
     human = new Controller;
     server = new AjaxRequest;
     drawClown = function() {
-      var canvas, clown, clown_height, clown_width, ctx, sources, xpos, ypos;
+      var canvas, clowns, ctx, head, torso, xpos, ypos;
       canvas = document.getElementById('canvas');
       ctx = canvas.getContext("2d");
       xpos = (canvas.width - 256) / 2;
       ypos = (canvas.height - 200) / 2;
-      clown_width = 256;
-      clown_height = 200;
-      clown = new Image();
-      clown.src = "../hammer_bot/assets/clown.png";
-      sources = {
-        torso: "../hammer_bot/assets/clown_torso.png",
-        head: "../hammer_bot/assets/clown_head.png",
-        r_arm: "../hammer_bot/assets/clown_R-arm.png",
-        l_arm: "../hammer_bot/assets/clown_L-arm.png"
+      clowns = {
+        torso: {
+          source: "../hammer_bot/assets/clown_torso_100.png"
+        },
+        head: {
+          source: "../hammer_bot/assets/clown_head.png"
+        },
+        r_arm: {
+          source: "../hammer_bot/assets/clown_Rarm.png"
+        },
+        l_arm: {
+          source: "../hammer_bot/assets/clown_Larm.png"
+        }
       };
-      return clown.onload = function() {
-        ctx.drawImage(clown, xpos, ypos, clown_width, clown_height);
+      torso = new Image();
+      torso.src = clowns.torso.source;
+      head = new Image();
+      head.src = clowns.head.source;
+      torso.onload = function() {
+        return ctx.drawImage(torso, xpos, ypos);
+      };
+      return head.onload = function() {
+        ctx.drawImage(head, xpos - 12, ypos - 56);
         return setInterval(function() {
           xpos = Math.floor(Math.random() * (canvas.width - 256));
           ypos = Math.floor(Math.random() * (canvas.width - 200));
-          return ctx.drawImage(clown, xpos, ypos, clown_width, clown_height);
+          ctx.drawImage(clown, xpos, ypos, clown_width, clown_height);
+          return ctx.rotate(0.17);
         }, 1000);
       };
     };

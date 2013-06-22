@@ -85,26 +85,52 @@ $(document).ready ->
   drawClown = ->
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext("2d")
+
     xpos = (canvas.width-256)/2
     ypos = (canvas.height-200)/2
-    clown_width = 256
-    clown_height = 200
-    clown = new Image()
-    clown.src = "../hammer_bot/assets/clown.png"
+    # clown_width = 256
+    # clown_height = 200
+    # clown = new Image()
+    # clown.src = "../hammer_bot/assets/clown.png"
 
-    sources =
-      torso: "../hammer_bot/assets/clown_torso.png"
-      head:  "../hammer_bot/assets/clown_head.png"
-      r_arm: "../hammer_bot/assets/clown_R-arm.png"
-      l_arm: "../hammer_bot/assets/clown_L-arm.png"
+    clowns =
+      torso:
+        source: "../hammer_bot/assets/clown_torso_100.png"
+        # width:
+        # height:
+      head:
+        source: "../hammer_bot/assets/clown_head.png"
+        # width:
+        # height:
+      r_arm:
+        source: "../hammer_bot/assets/clown_Rarm.png"
+        # width:
+        # height:
+      l_arm:
+        source:"../hammer_bot/assets/clown_Larm.png"
+        # width:
+        # height:
+
+    torso = new Image()
+    torso.src = clowns.torso.source
+
+    head = new Image()
+    head.src = clowns.head.source
+
+    torso.onload = ->
+      ctx.drawImage(torso, xpos, ypos)
+    head.onload = ->
+      ctx.drawImage(head, xpos-12, ypos-56)
+      # ctx.drawImage(clown_head, xpos, ypos, clown_width, clown_height)
+      # ctx.drawImage(clown_Rarm, xpos, ypos, clown_width, clown_height)
+      # ctx.drawImage(clown_Larm, xpos, ypos, clown_width, clown_height)
 
 
-    clown.onload = ->
-      ctx.drawImage(clown, xpos, ypos, clown_width, clown_height)
       setInterval ->
         xpos = Math.floor(Math.random()*(canvas.width-256))
         ypos = Math.floor(Math.random()*(canvas.width-200))
         ctx.drawImage(clown, xpos, ypos, clown_width, clown_height)
+        ctx.rotate(0.17)
       , 1000
 
 
