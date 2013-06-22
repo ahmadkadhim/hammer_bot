@@ -101,6 +101,11 @@ $(document).ready ->
 
     clown.onload = ->
       ctx.drawImage(clown, xpos, ypos, clown_width, clown_height)
+      setInterval ->
+        xpos = Math.floor(Math.random()*(canvas.width-256))
+        ypos = Math.floor(Math.random()*(canvas.width-200))
+        ctx.drawImage(clown, xpos, ypos, clown_width, clown_height)
+      , 1000
 
 
 

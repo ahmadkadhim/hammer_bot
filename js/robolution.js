@@ -124,7 +124,12 @@
         l_arm: "../hammer_bot/assets/clown_L-arm.png"
       };
       return clown.onload = function() {
-        return ctx.drawImage(clown, xpos, ypos, clown_width, clown_height);
+        ctx.drawImage(clown, xpos, ypos, clown_width, clown_height);
+        return setInterval(function() {
+          xpos = Math.floor(Math.random() * (canvas.width - 256));
+          ypos = Math.floor(Math.random() * (canvas.width - 200));
+          return ctx.drawImage(clown, xpos, ypos, clown_width, clown_height);
+        }, 1000);
       };
     };
     return drawClown();
