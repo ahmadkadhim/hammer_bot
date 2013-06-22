@@ -64,12 +64,19 @@
 
       function Dance() {}
 
-      moves = [0, 37, 38, 39, 40, 65, 68];
+      moves = [37, 38, 39, 40];
 
       Dance.prototype.start = function(duration) {
+        var start_time;
+        start_time = Date.now();
         return setInterval(function() {
-          var current_move;
-          current_move = moves[Math.floor(Math.random() * 7)];
+          var current_move, now_time;
+          current_move = moves[Math.floor(Math.random() * moves.length)];
+          now_time = Date.now();
+          if (start_time + Date.now() >= (now_time * 2) + duration) {
+            console.log("times up");
+          }
+          console.log("start time: " + start_time + ", now time: " + now_time);
           return server.get(keyMap[current_move].direction);
         }, 1000);
       };

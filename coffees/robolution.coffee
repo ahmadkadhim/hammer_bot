@@ -26,12 +26,18 @@ $(document).ready ->
 
 
   class Dance
-    moves = [0,37,38,39,40,65,68]
+    moves = [37,38,39,40] # ,65,68,0]  aren't in the keyMap yet
 
-    start: (duration) ->
+    start: (duration) ->      # duration is in seconds
+      start_time = Date.now()
       setInterval ->
-        current_move = moves[Math.floor(Math.random()*7)]
+        current_move = moves[Math.floor(Math.random()* moves.length )]
+        now_time = Date.now()
+        if start_time + Date.now() >= (now_time * 2) + duration
+          console.log "times up"
+        console.log "start time: #{start_time}, now time: #{now_time}"
         server.get(keyMap[current_move].direction)
+        # console.log new Date.getTime
       , 1000
       # now = new Date()
       # console.log(now)
