@@ -9,29 +9,24 @@
     <body>
 
         <div id="danceboard">
-            <h1 id="title">Dance Dance Robolution</h1>
             <nav>
+                <h1 id="title">Dance Dance Robolution</h1>
                 <ul>
-                    <li class="button" id="moonwalk"> Moonwalk
-                    </li>
+                    <li class="button" id="controls">User Controls</li>
+                    <li class="button" id="moonwalk">Moonwalk</li>
                 </ul>
             </nav>
-            <div class="arrow" id="up">
+            <div class="controller">
+                <div class="arrow" id="up"></div>
+                <div class="arrow clear" id="left"></div>
+                <div class="arrow" id="stop"></div>
+                <div class="arrow" id="right"></div>
+                <div class="arrow" id="down"></div>
+                <div class="clear"></div>
             </div>
-
-            <div class="arrow clear" id="left">
+            <div class="canvas-frame">
+                <canvas id="canvas" height="340" width="580">Canvas</canvas>
             </div>
-
-            <div class="arrow" id="stop">
-            </div>
-
-            <div class="arrow" id="right">
-            </div>
-
-            <div class="arrow" id="down">
-            </div>
-
-            <div class="clear"></div>
         </div>
 <!-- <script src="./javascript/awesomeness.js"></script>
      <script src="./js/prettyok.js"></script> -->

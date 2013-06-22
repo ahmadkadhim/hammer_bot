@@ -17,6 +17,7 @@
     font-family: "Monofett", "Futura", "Helvetica", "Arial", sans-serif;
     font-size: 4em;
     text-align: center;
+    margin-bottom: 20px;
 }
 
 #danceboard:after {
@@ -24,6 +25,10 @@
     display: table;
     clear: both;
 }
+
+/*.controller {
+    margin-top: 150px;
+}*/
 
 .arrow {
     position: absolute;
@@ -37,10 +42,6 @@
     -ms-transition: all 250 ease-out;
     -moz-transition: all 250 ease-out;
     transition: all 250 ease-out;
-}
-
-.selected {
-    background-color: rgba(233,22,99,.8);
 }
 
 #up {
@@ -84,21 +85,24 @@
     transform: rotate(180deg);
 }
 
-clear {
+.clear {
     clear: left;
 }
 
-#left:hover, #right:hover, #up:hover, #down:hover{
+.selected, #left:hover, #right:hover, #up:hover, #down:hover{
     background-color: rgba(233,22,99,.8);
 }
 
 .button {
     font-family: "Monofett", "Futura", "Helvetica", "Arial", sans-serif;
-    font-size: 2em;
-    display: table-cell;
+    font-size: 1.5em;
+    display: inline-block;
     vertical-align: middle;
+    text-align: center;
+    margin: 5px;
+    padding: 5px;
     height: 10px;
-    width: 150px;
+    width: 200px;
     background: rgba(125,119,121,.6);
     padding: 20px;
     border: 3px solid rgba(64,64,64,1);
@@ -109,10 +113,29 @@ clear {
     transition: all 250 ease-out;
 }
 
-.button:hover  {
+/*  {
     background-color: rgba(64,64,64,1);
-}
+}*/
 
-.button-choice {
+.button-choice, .button:hover {
     background-color: red;
 }
+
+.canvas-frame {
+    border: 2px solid rgba(64,64,64,1);
+    background-color: #757475;
+    border-radius: 10px;
+    height: 370px;
+    width: 650px;
+    padding: auto;
+    text-align: center;
+    vertical-align: middle;
+}
+
+#canvas {
+    border: 1px solid black;
+    background-color: white;
+    margin: auto;
+    margin-top: 10px;
+}
+

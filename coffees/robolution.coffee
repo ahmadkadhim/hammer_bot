@@ -1,12 +1,14 @@
 $(document).ready ->
 
+  $(".controller").hide()
+
   keyMap =
     37: direction: {strafe:  +1}, id: "left"
     38: direction: {forward: +1}, id: "up"
     39: direction: {strafe:  -1}, id: "right"
     40: direction: {forward: -1}, id: "down"
 
-  class PressKeys
+  class Controller
     $(document).keydown (e) ->
       pressed = keyMap[e.keyCode]
       direction = {}
@@ -24,10 +26,17 @@ $(document).ready ->
         dataType: "jsonp"
 
 
-
-
   $("#moonwalk").click ->
+    $(".button").removeClass("button-choice")
     $(this).addClass("button-choice")
+    $(".controller").fadeOut(400)
+    moonwalk.start(5000)
+
+  $("#controls").click ->
+    $(".button").removeClass("button-choice")
+    $(this).addClass("button-choice")
+    $(".controller").fadeIn(400)
+
 
   class Dance
     moves = [37,38,39,40] # ,65,68,0]  aren't in the keyMap yet
@@ -56,18 +65,6 @@ $(document).ready ->
 
 
   moonwalk = new Dance
-  moonwalk.start(5000)
-
-
-
-
-  # start ->
-  #   moves = [0,37,38,39,40,65,68]
-  #   e = $.Event("keydown")
-  #   e.which = moves[Math.floor(Math.random()*7)]
-  #   $(document).trigger(e)
-  #   console.log e
-
 
 
 
@@ -76,7 +73,8 @@ $(document).ready ->
  # create the relevant classes:
  #  since human and server are listening to window, they should never
  #  need to be interacted with
-  # human = new PressKeys
+
+  human = new Controller
   server = new AjaxRequest
 
 
