@@ -80,5 +80,31 @@ $(document).ready ->
   human = new Controller
   server = new AjaxRequest
 
+    # dimensions:   width:  580 height:   340
+
+  drawClown = ->
+    canvas = document.getElementById('canvas');
+    ctx = canvas.getContext("2d")
+    xpos = (canvas.width-256)/2
+    ypos = (canvas.height-200)/2
+    clown_width = 256
+    clown_height = 200
+    clown = new Image()
+    clown.src = "../hammer_bot/assets/clown.png"
+
+    sources =
+      torso: "../hammer_bot/assets/clown_torso.png"
+      head:  "../hammer_bot/assets/clown_head.png"
+      r_arm: "../hammer_bot/assets/clown_R-arm.png"
+      l_arm: "../hammer_bot/assets/clown_L-arm.png"
+
+
+    clown.onload = ->
+      ctx.drawImage(clown, xpos, ypos, clown_width, clown_height)
+
+
+
+
+  drawClown()
 
 
