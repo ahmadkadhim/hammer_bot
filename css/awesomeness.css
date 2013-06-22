@@ -1,0 +1,97 @@
+
+@import url(http://fonts.googleapis.com/css?family=Monofett);
+
+#danceboard {
+    position: relative;
+    width: 700px;
+    height: 700px;
+    padding: 20px;
+    border: 5px rgba(1,204,124,.6) solid;
+    border-radius: 25px;
+    margin: 0 auto;
+    margin-top: 200px;
+    background: #01feae;
+}
+
+#title {
+    font-family: "Monofett", "Futura", "Helvetica", "Arial", sans-serif;
+    font-size: 4em;
+    text-align: center;
+}
+
+#danceboard:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
+.arrow {
+    position: absolute;
+    height: 100px;
+    width: 100px;
+    background: rgba(1,204,124,.6) url('../assets/triangle_transparent.png') no-repeat 50% 50%;
+    padding: 20px;
+    border: 3px solid rgba(141,34,100,1);
+    border-radius: 10px;
+    -webkit-transition: all 250 ease-out;
+    -ms-transition: all 250 ease-out;
+    -moz-transition: all 250 ease-out;
+    transition: all 250 ease-out;
+}
+
+.selected {
+    background-color: blue;
+}
+
+#up {
+    top: 220px;
+    left: 297px;
+}
+
+#left {
+    top: 370px;
+    left: 147px;
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    -ms-transform: rotate(270deg);
+    -o-transform: rotate(270deg);
+    transform: rotate(270deg);
+}
+
+#stop {
+    top: 370px;
+    left: 297px;
+    background: rgba(1,204,124,.6);
+}
+
+#right {
+    top: 370px;
+    left: 447px;
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+#down {
+    top: 520px;
+    left: 297px;
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+clear {
+    clear: left;
+}
+
+#left:hover, #right:hover, #up:hover, #down:hover{
+
+background-color: rgba(233,22,99,.8);
+}
+
+
