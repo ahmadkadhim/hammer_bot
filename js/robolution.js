@@ -139,7 +139,9 @@
         return setInterval(function() {
           xpos = Math.floor(Math.random() * (canvas.width - 256));
           ypos = Math.floor(Math.random() * (canvas.width - 200));
-          ctx.drawImage(clown, xpos, ypos, clown_width, clown_height);
+          canvas.width = canvas.width;
+          ctx.drawImage(torso, xpos, ypos);
+          ctx.drawImage(head, xpos - 12, ypos - 56);
           return ctx.rotate(0.17);
         }, 1000);
       };
