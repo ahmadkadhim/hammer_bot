@@ -28,30 +28,40 @@ $(document).ready ->
   class Dance
     moves = [0,37,38,39,40,65,68]
 
-    start: ->
-      # setInterval ->
-      console.log("cool")
-        # 1000
+    start: (duration) ->
+      setInterval ->
+        current_move = moves[Math.floor(Math.random()*7)]
+        server.get(keyMap[current_move].direction)
+      , 1000
       # now = new Date()
       # console.log(now)
 
 
 
 
-
-
-  human = new PressKeys
-  server = new AjaxRequest
-
-
-
   moonwalk = new Dance
-  setInterval (duration) ->
-    moonwalk.start()
-  , 1000
+  moonwalk.start()
 
 
 
+
+  # start ->
+  #   moves = [0,37,38,39,40,65,68]
+  #   e = $.Event("keydown")
+  #   e.which = moves[Math.floor(Math.random()*7)]
+  #   $(document).trigger(e)
+  #   console.log e
+
+
+
+
+
+
+ # create the relevant classes:
+ #  since human and server are listening to window, they should never
+ #  need to be interacted with
+  # human = new PressKeys
+  server = new AjaxRequest
 
 
 
