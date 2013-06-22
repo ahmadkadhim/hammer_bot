@@ -7,7 +7,6 @@ $(document).ready ->
     40: direction: {forward: -1}, id: "down"
 
   class PressKeys
-
     $(document).keydown (e) ->
       pressed = keyMap[e.keyCode]
       direction = {}
@@ -18,7 +17,6 @@ $(document).ready ->
       $("##{keyMap[e.keyCode].id}").removeClass("selected")
 
 
-
   class AjaxRequest     # ----- server is at : 192.168.0.105 ------
     get: (input) ->
       $.ajax "http://127.0.0.1:8071/motion-control/update",
@@ -27,11 +25,16 @@ $(document).ready ->
 
 
 
-  # class Dance
-  #   moves = [0,37,38,39,40,65,68]
+  class Dance
+    moves = [0,37,38,39,40,65,68]
 
-  #   start: (duration) ->
-  #     now = new Date
+    start: ->
+      # setInterval ->
+      console.log("cool")
+        # 1000
+      # now = new Date()
+      # console.log(now)
+
 
 
 
@@ -42,8 +45,10 @@ $(document).ready ->
 
 
 
-  # moonwalk = new Dance
-  # moonwalk.start()
+  moonwalk = new Dance
+  setInterval (duration) ->
+    moonwalk.start()
+  , 1000
 
 
 
