@@ -67,25 +67,31 @@
       moves = [37, 38, 39, 40];
 
       Dance.prototype.start = function(duration) {
-        var start_time;
+        var keep_dancing, start_time;
         start_time = Date.now();
-        return setInterval(function() {
+        return keep_dancing = setInterval(function() {
           var current_move, now_time;
-          current_move = moves[Math.floor(Math.random() * moves.length)];
           now_time = Date.now();
+          current_move = moves[Math.floor(Math.random() * moves.length)];
           if (start_time + duration <= now_time) {
             console.log("time's up");
+            clearInterval(keep_dancing);
           }
           console.log("start time: " + start_time + ", now time: " + now_time);
+          console.log("time left: " + (((start_time + duration) - now_time) / 1000));
           return server.get(keyMap[current_move].direction);
         }, 1000);
+      };
+
+      Dance.prototype.stopDancing = function() {
+        return clearInterval(keep_dancing);
       };
 
       return Dance;
 
     })();
     moonwalk = new Dance;
-    moonwalk.start(10000);
+    moonwalk.start(5000);
     return server = new AjaxRequest;
   });
 

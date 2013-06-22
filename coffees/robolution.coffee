@@ -30,23 +30,29 @@ $(document).ready ->
 
     start: (duration) ->      # duration is in ms
       start_time = Date.now()
-      setInterval ->
-        current_move = moves[Math.floor(Math.random()* moves.length )]
+      keep_dancing = setInterval ->
         now_time = Date.now()
-        console.log "time's up" if start_time + duration <= now_time
-
+        current_move = moves[Math.floor(Math.random()* moves.length )]
+        if start_time + duration <= now_time
+          console.log "time's up"
+          # Dance.stopDancing()
+          clearInterval(keep_dancing)
         console.log "start time: #{start_time}, now time: #{now_time}"
+        console.log "time left: #{((start_time + duration) - now_time)/1000}"
         server.get(keyMap[current_move].direction)
         # console.log new Date.getTime
       , 1000
       # now = new Date()
       # console.log(now)
 
+    stopDancing: ->
+      clearInterval(keep_dancing)
+
 
 
 
   moonwalk = new Dance
-  moonwalk.start(10000)
+  moonwalk.start(5000)
 
 
 
