@@ -73,8 +73,8 @@
           var current_move, now_time;
           current_move = moves[Math.floor(Math.random() * moves.length)];
           now_time = Date.now();
-          if (start_time + Date.now() >= (now_time * 2) + duration) {
-            console.log("times up");
+          if (start_time + duration <= now_time) {
+            console.log("time's up");
           }
           console.log("start time: " + start_time + ", now time: " + now_time);
           return server.get(keyMap[current_move].direction);
@@ -85,7 +85,7 @@
 
     })();
     moonwalk = new Dance;
-    moonwalk.start();
+    moonwalk.start(10000);
     return server = new AjaxRequest;
   });
 
