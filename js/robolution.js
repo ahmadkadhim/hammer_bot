@@ -59,6 +59,9 @@
       return AjaxRequest;
 
     })();
+    $("#moonwalk").click(function() {
+      return $(this).addClass("button-choice");
+    });
     Dance = (function() {
       var moves;
 

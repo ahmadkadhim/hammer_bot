@@ -25,6 +25,10 @@ $(document).ready ->
 
 
 
+
+  $("#moonwalk").click ->
+    $(this).addClass("button-choice")
+
   class Dance
     moves = [37,38,39,40] # ,65,68,0]  aren't in the keyMap yet
 
