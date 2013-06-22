@@ -108,11 +108,11 @@
     human = new Controller;
     server = new AjaxRequest;
     drawClown = function() {
-      var canvas, clowns, ctx, head, torso, xpos, ypos;
-      canvas = document.getElementById('canvas');
-      ctx = canvas.getContext("2d");
-      xpos = (canvas.width - 256) / 2;
-      ypos = (canvas.height - 200) / 2;
+      var canvas1, clowns, ctx1, head, l_arm, r_arm, torso, xpos, ypos;
+      canvas1 = document.getElementById('canvas1');
+      ctx1 = canvas1.getContext("2d");
+      xpos = (canvas1.width - 256) / 2;
+      ypos = (canvas1.height - 200) / 2;
       clowns = {
         torso: {
           source: "../hammer_bot/assets/clown_torso_100.png"
@@ -131,19 +131,21 @@
       torso.src = clowns.torso.source;
       head = new Image();
       head.src = clowns.head.source;
+      r_arm = new Image();
+      r_arm.src = clowns.r_arm.source;
+      l_arm = new Image();
+      l_arm.src = clowns.l_arm.source;
       torso.onload = function() {
-        return ctx.drawImage(torso, xpos, ypos);
+        return ctx1.drawImage(torso, xpos, ypos);
       };
-      return head.onload = function() {
-        ctx.drawImage(head, xpos - 12, ypos - 56);
-        return setInterval(function() {
-          xpos = Math.floor(Math.random() * (canvas.width - 256));
-          ypos = Math.floor(Math.random() * (canvas.width - 200));
-          canvas.width = canvas.width;
-          ctx.drawImage(torso, xpos, ypos);
-          ctx.drawImage(head, xpos - 12, ypos - 56);
-          return ctx.rotate(0.17);
-        }, 1000);
+      head.onload = function() {
+        return ctx1.drawImage(head, xpos - 12, ypos - 56);
+      };
+      r_arm.onload = function() {
+        return ctx1.drawImage(r_arm, xpos + 81, ypos - 27);
+      };
+      return l_arm.onload = function() {
+        return ctx1.drawImage(l_arm, xpos - 80, ypos - 4);
       };
     };
     return drawClown();

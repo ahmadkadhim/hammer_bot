@@ -83,11 +83,11 @@ $(document).ready ->
     # dimensions:   width:  580 height:   340
 
   drawClown = ->
-    canvas = document.getElementById('canvas');
-    ctx = canvas.getContext("2d")
+    canvas1 = document.getElementById('canvas1');
+    ctx1 = canvas1.getContext("2d")
 
-    xpos = (canvas.width-256)/2
-    ypos = (canvas.height-200)/2
+    xpos = (canvas1.width-256)/2
+    ypos = (canvas1.height-200)/2
     # clown_width = 256
     # clown_height = 200
     # clown = new Image()
@@ -117,24 +117,42 @@ $(document).ready ->
     head = new Image()
     head.src = clowns.head.source
 
+    r_arm = new Image()
+    r_arm.src = clowns.r_arm.source
+
+    l_arm = new Image()
+    l_arm.src = clowns.l_arm.source
+
     torso.onload = ->
-      ctx.drawImage(torso, xpos, ypos)
+      ctx1.drawImage(torso, xpos, ypos)
     head.onload = ->
-      ctx.drawImage(head, xpos-12, ypos-56)
-      # ctx.drawImage(clown_head, xpos, ypos, clown_width, clown_height)
-      # ctx.drawImage(clown_Rarm, xpos, ypos, clown_width, clown_height)
-      # ctx.drawImage(clown_Larm, xpos, ypos, clown_width, clown_height)
+      ctx1.drawImage(head, xpos-12, ypos-56)
+    r_arm.onload = ->
+      ctx1.drawImage(r_arm, xpos+81, ypos-27)
+    l_arm.onload = ->
+      ctx1.drawImage(l_arm, xpos-80, ypos-4)
 
 
-      setInterval ->
-        xpos = Math.floor(Math.random()*(canvas.width-256))
-        ypos = Math.floor(Math.random()*(canvas.width-200))
-        canvas.width = canvas.width
-        ctx.drawImage(torso, xpos, ypos)
-        ctx.drawImage(head, xpos-12, ypos-56)
-        ctx.rotate(0.17)
+      # setInterval ->
+      #   xpos = Math.floor(Math.random()*(canvas1.width-256))
+      #   ypos = Math.floor(Math.random()*(canvas1.width-200))
+      #   canvas1.width = canvas1.width
+      #   ctx1.drawImage(torso, xpos, ypos)
+      #   ctx1.drawImage(head, xpos-12, ypos-56)
+      #   ctx1.rotate(0.17)
 
-      , 1000
+      # , 1000
+
+
+      # drawImageRot (img,x,y,width,height,deg) ->
+      #   rad = (deg * Math.PI) / 180
+      #   ctx1.translate(x + width / 2, y + height / 2)
+      #   ctx1.rotate(rad)
+      #   ctx1.drawImage(img,width / 2 * (-1),height / 2 * (-1),width,height)
+
+      #   ctx1.rotate(rad * ( -1 ) );
+      #   ctx1.translate((x + width / 2) * (-1), (y + height / 2) * (-1))
+
 
 
 
