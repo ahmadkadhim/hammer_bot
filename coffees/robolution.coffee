@@ -9,20 +9,21 @@ $(document).ready ->
   class PressKeys
 
     $(document).keydown (e) ->
-
       pressed = keyMap[e.keyCode]
       direction = {}
-
       $("##{keyMap[e.keyCode].id}").addClass("selected")
-
-      $.ajax "http://127.0.0.1:8071/motion-control/update", #server: 192.168.0.105
-          data: keyMap[e.keyCode].direction
-          dataType: "jsonp"
+      server.get(keyMap[e.keyCode].direction)
 
     $(document).keyup (e) ->
       $("##{keyMap[e.keyCode].id}").removeClass("selected")
-      # $(".arrow").css("background-color","rgba(1,204,124,.6)")
 
+
+
+  class AjaxRequest     # ----- server is at : 192.168.0.105 ------
+    get: (input) ->
+      $.ajax "http://127.0.0.1:8071/motion-control/update",
+        data: input
+        dataType: "jsonp"
 
 
 
@@ -37,6 +38,7 @@ $(document).ready ->
 
 
   human = new PressKeys
+  server = new AjaxRequest
 
 
 
