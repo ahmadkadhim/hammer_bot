@@ -64,11 +64,13 @@
       $(".button").removeClass("button-choice");
       $(this).addClass("button-choice");
       $(".controller").fadeOut(400);
+      $(".canvas-frame").fadeIn(400);
       return moonwalk.start(5000);
     });
     $("#controls").click(function() {
       $(".button").removeClass("button-choice");
       $(this).addClass("button-choice");
+      $(".canvas-frame").fadeOut(400);
       return $(".controller").fadeIn(400);
     });
     Dance = (function() {

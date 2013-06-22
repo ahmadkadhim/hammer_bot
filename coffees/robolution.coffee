@@ -25,16 +25,19 @@ $(document).ready ->
         data: input
         dataType: "jsonp"
 
+# --------- buttons ------------
 
   $("#moonwalk").click ->
     $(".button").removeClass("button-choice")
     $(this).addClass("button-choice")
     $(".controller").fadeOut(400)
+    $(".canvas-frame").fadeIn(400)
     moonwalk.start(5000)
 
   $("#controls").click ->
     $(".button").removeClass("button-choice")
     $(this).addClass("button-choice")
+    $(".canvas-frame").fadeOut(400)
     $(".controller").fadeIn(400)
 
 
