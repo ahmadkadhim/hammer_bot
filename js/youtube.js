@@ -4,14 +4,13 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
 var player;
 function onYouTubeIframeAPIReady() {
   player = new YT.Player('player', {
-    height: '390',
-    width: '640',
-    videoId: 'M7lc1UVf-VE',
+    height: '200',
+    width: '500',
+    playerVars:{'autoplay':1},
+    videoId: 'HMWAKW303pg',
     events: {
       'onReady': onPlayerReady,
       'onStateChange': onPlayerStateChange
@@ -19,14 +18,11 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
-// 4. The API will call this function when the video player is ready.
 function onPlayerReady(event) {
+  console.log("coo")
   event.target.playVideo();
 }
 
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
 var done = false;
 function onPlayerStateChange(event) {
   if (event.data == YT.PlayerState.PLAYING && !done) {
@@ -34,7 +30,7 @@ function onPlayerStateChange(event) {
     done = true;
   }
 }
-function stopVideo() {
-  player.stopVideo();
-}
+// function stopVideo() {
+//   player.stopVideo();
+// }
 

@@ -142,8 +142,8 @@ $(document).ready ->
 
       angle = 0
       setInterval ->
-        torso_x = Math.floor(Math.random()*(canvas.width-230))
-        torso_y = Math.floor(Math.random()*(canvas.width-110))
+        torso_x = Math.floor(Math.random()* 3)  #(canvas.width-230))
+        torso_y = Math.floor(Math.random()* 3)  #(canvas.width-110))
         head_x = torso_x - 15
         head_y = torso_y - 96
 
@@ -160,36 +160,3 @@ $(document).ready ->
       , 1000
 
   drawClown()
-
-
-
-
-  # -----embed music via youtube -------
-
-  # tag = document.createElement('script');
-  # tag.src = "https://www.youtube.com/iframe_api";
-  # firstScriptTag = document.getElementsByTagName('script')[0];
-  # firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-  # window.onYouTubeIframeAPIReady ->
-  # player = new YT.Player('youtube', {
-  #   height: '390',
-  #   width: '640',
-  #   videoId: 'M7lc1UVf-VE',
-  #   events:
-  #     'onReady': onPlayerReady,
-  #     'onStateChange': onPlayerStateChange
-  #   }
-  # )
-
-  # window.onPlayerReady(event) ->
-  # event.target.playVideo()
-
-  # done = false;
-  # window.onPlayerStateChange(event) ->
-  #   if (event.data == YT.PlayerState.PLAYING && !done)
-  #     setTimeout(stopVideo, 6000);
-  #     done = true;
-
-  # stopVideo() ->
-  #   player.stopVideo
