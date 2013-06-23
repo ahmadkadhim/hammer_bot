@@ -3,19 +3,17 @@
     <head>
         <link rel="stylesheet" type="text/css" href="css/reset.css"/>
         <link rel="stylesheet" type="text/css" href="css/awesomeness.css"/>
-
         <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         <script src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.5.4.min.js"></script>
+        <script src="js/robolution.js"></script>
     </head>
-
     <body>
-
         <div id="danceboard">
             <nav>
                 <h1 id="title">Dance Dance Robolution</h1>
                 <ul>
                     <li class="button" id="controls">User Controls</li>
-                    <li class="button" id="moonwalk">Moonwalk</li>
+                    <li class="button" id="moonwalk">Clown Dance</li>
                 </ul>
             </nav>
             <div class="controller">
@@ -28,48 +26,11 @@
             </div>
             <div class="canvas-frame">
                 <div id="container"></div>
-
-<!--                 <canvas id="canvas" width="580" height="340">Canvas for the Torso
-                </canvas> -->
+<!--            <canvas id="canvas" width="580" height="340">Canvas for the Torso</canvas> -->
             </div>
             <div id="youtube">
                 <div id="player"></div>
             </div>
-
         </div>
-<!--  -->
-    <script src="js/robolution.js"></script>
-<script defer="defer">
-      window.onload = function() {
-        var stage = new Kinetic.Stage({
-          container: 'container',
-          width: 580,
-          height: 340
-        });
-        var layer = new Kinetic.Layer();
-
-        var blueRect = new Kinetic.Rect({
-          x: 50,
-          y: 75,
-          width: 100,
-          height: 50,
-          fill: '#00D2FF',
-          stroke: 'black',
-          strokeWidth: 4
-        });
-
-        layer.add(blueRect);
-        stage.add(layer);
-
-        // one revolution per 4 seconds
-        var angularSpeed = Math.PI / 2;
-        var anim = new Kinetic.Animation(function(frame) {
-          var angleDiff = frame.timeDiff * angularSpeed / 1000;
-          blueRect.rotate(angleDiff);
-        }, layer);
-
-        anim.start();
-      };
-    </script>
     </body>
 </html>

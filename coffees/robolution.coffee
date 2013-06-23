@@ -26,7 +26,6 @@ $(document).ready ->
         dataType: "jsonp"
 
 # --------- buttons ------------
-
   $("#moonwalk").click ->
     $(".button").removeClass("button-choice")
     $(this).addClass("button-choice")
@@ -35,19 +34,16 @@ $(document).ready ->
     moonwalk.start(5000)
     bigtop = new MusicPlayer
     bigtop.startPlaying()
-
   $("#controls").click ->
     $(".button").removeClass("button-choice")
     $(this).addClass("button-choice")
     $(".canvas-frame").fadeOut(400)
     $(".controller").fadeIn(400)
 
-
 # -----ROBOT DANCE -----
   class robotDance
     moves = [37,38,39,40] # ,65,68,0]  aren't in the keyMap yet
-
-    start: (duration) ->      # duration is in ms
+    start:(duration) ->      # duration is in ms
       start_time = Date.now()
       keep_dancing = setInterval ->
         now_time = Date.now()
@@ -63,11 +59,10 @@ $(document).ready ->
       , 1000
       # now = new Date()
       # console.log(now)
-
     stopDancing: ->
       clearInterval(keep_dancing)
 
-
+# -------DRAW CLOWN TO CANVAS : NOT O.O.  --------
   drawClown = ->
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext("2d")
@@ -107,8 +102,7 @@ $(document).ready ->
     torso_x = (canvas.width-156)/2
     torso_y = (canvas.height-100)/2
 
-
-# img, sprite-x, sprite-y,spriteWidth,spriteHeight,canvasPosX,canvasPosY, spriteWidth,spriteHeight
+    # drawImage(sprites,srcX,srcY,srcW,srcH,destX,destY,destW,destH)
     clown.onload = ->
       head_x = torso_x - 15
       head_y = torso_y - 96
@@ -118,9 +112,6 @@ $(document).ready ->
 
       l_arm_x = torso_x - 80
       l_arm_y = torso_y - 4
-
-      ctx.translate(canvas.width / 2, canvas.height / 2);
-      ctx.rotate(Math.PI / 4);
 
       ctx.drawImage(clown, clown_loc.torso.position.x, clown_loc.torso.position.y, clown_loc.torso.width, clown_loc.torso.height, torso_x, torso_y, clown_loc.torso.width, clown_loc.torso.height)
       ctx.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, head_x, head_y, clown_loc.head.width, clown_loc.head.height)
@@ -138,11 +129,6 @@ $(document).ready ->
         ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height)
       , 1000
 
-  drawClown()
-
-
-
-
 
 
 
@@ -153,14 +139,12 @@ $(document).ready ->
       tag.setAttribute("id", "youtube_api")
       firstScriptTag = document.getElementsByTagName('script')[0]
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
-
     startPlaying: ->
       song = document.createElement('script')
       song.src = "js/youtube.js"
       song.setAttribute("id", "music_player")
       firstScriptTag = document.getElementsByTagName('script')[1]
       firstScriptTag.parentNode.insertBefore(song, firstScriptTag)
-
     # stopPlaying: ->
     #   $("#youtube_api").remove()
     #   $("#music_player").remove()

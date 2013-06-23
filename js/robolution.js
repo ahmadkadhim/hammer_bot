@@ -163,8 +163,6 @@
         r_arm_y = torso_y - 15;
         l_arm_x = torso_x - 80;
         l_arm_y = torso_y - 4;
-        ctx.translate(canvas.width / 2, canvas.height / 2);
-        ctx.rotate(Math.PI / 4);
         ctx.drawImage(clown, clown_loc.torso.position.x, clown_loc.torso.position.y, clown_loc.torso.width, clown_loc.torso.height, torso_x, torso_y, clown_loc.torso.width, clown_loc.torso.height);
         ctx.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, head_x, head_y, clown_loc.head.width, clown_loc.head.height);
         ctx.drawImage(clown, clown_loc.r_arm.position.x, clown_loc.r_arm.position.y, clown_loc.r_arm.width, clown_loc.r_arm.height, r_arm_x, r_arm_y, clown_loc.r_arm.width, clown_loc.r_arm.height);
@@ -178,7 +176,6 @@
         }, 1000);
       };
     };
-    drawClown();
     MusicPlayer = (function() {
       function MusicPlayer() {
         var firstScriptTag, tag;
