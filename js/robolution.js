@@ -108,7 +108,7 @@
     human = new Controller;
     server = new AjaxRequest;
     drawClown = function() {
-      var canvas1, clowns, ctx1, head, l_arm, r_arm, torso, xpos, ypos;
+      var canvas1, clowns, ctx1, head, l_arm, r_arm, rotateImage, torso, xpos, ypos;
       canvas1 = document.getElementById('canvas1');
       ctx1 = canvas1.getContext("2d");
       xpos = (canvas1.width - 256) / 2;
@@ -144,9 +144,21 @@
       r_arm.onload = function() {
         return ctx1.drawImage(r_arm, xpos + 81, ypos - 27);
       };
-      return l_arm.onload = function() {
+      l_arm.onload = function() {
         return ctx1.drawImage(l_arm, xpos - 80, ypos - 4);
       };
+      rotateImage = function(img, x, y, width, height, deg) {
+        var rad;
+        rad = (deg * Math.PI) / 180;
+        ctx1.translate(x + width / 2, y + height / 2);
+        ctx1.rotate(rad);
+        ctx1.drawImage(img, width / 2 * (-1), height / 2 * (-1), width, height);
+        ctx1.rotate(rad * (-1));
+        return ctx1.translate((x + width / 2) * (-1), (y + height / 2) * (-1));
+      };
+      return $(document).click(function() {
+        return rotateImage(head, xpos - 12, ypos - 56, 100, 100, 20);
+      });
     };
     return drawClown();
   });

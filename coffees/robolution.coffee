@@ -144,16 +144,17 @@ $(document).ready ->
       # , 1000
 
 
-      # drawImageRot (img,x,y,width,height,deg) ->
-      #   rad = (deg * Math.PI) / 180
-      #   ctx1.translate(x + width / 2, y + height / 2)
-      #   ctx1.rotate(rad)
-      #   ctx1.drawImage(img,width / 2 * (-1),height / 2 * (-1),width,height)
+    rotateImage = (img,x,y,width,height,deg) ->
+      rad = (deg * Math.PI) / 180
+      ctx1.translate(x + width / 2, y + height / 2)
+      ctx1.rotate(rad)
+      ctx1.drawImage(img,width / 2 * (-1),height / 2 * (-1),width,height)
 
-      #   ctx1.rotate(rad * ( -1 ) );
-      #   ctx1.translate((x + width / 2) * (-1), (y + height / 2) * (-1))
+      ctx1.rotate(rad * ( -1 ) );
+      ctx1.translate((x + width / 2) * (-1), (y + height / 2) * (-1))
 
-
+    $(document).click ->
+      rotateImage(head, xpos-12, ypos-56,100,100,20)
 
 
 
