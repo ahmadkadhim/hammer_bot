@@ -1,7 +1,7 @@
 $(document).ready ->
 
   $(".controller").hide()
-  # $("#youtube").hide()
+  $("#youtube").hide()
 
   keyMap =
     37: direction: {strafe:  +1}, id: "left"
@@ -34,6 +34,8 @@ $(document).ready ->
     $(".controller").fadeOut(400)
     $(".canvas-frame").fadeIn(400)
     moonwalk.start(5000)
+    bigtop = new MusicPlayer
+    bigtop.startPlaying()
 
   $("#controls").click ->
     $(".button").removeClass("button-choice")
@@ -160,3 +162,43 @@ $(document).ready ->
       , 1000
 
   drawClown()
+
+
+
+  class MusicPlayer
+    constructor: ->
+      tag = document.createElement('script')
+      tag.src = "https://www.youtube.com/iframe_api"
+      firstScriptTag = document.getElementsByTagName('script')[0]
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
+
+    startPlaying: ->
+      song = document.createElement('script')
+      song.src = "js/youtube.js"
+      firstScriptTag = document.getElementsByTagName('script')[1]
+      firstScriptTag.parentNode.insertBefore(song, firstScriptTag)
+      console.log "sars"
+
+    # onYouTubeIframeAPIReady: ->
+    #   player = new YT.Player('player', {
+    #     height: '200',
+    #     width: '500',
+    #     playerVars:{'autoplay':1},
+    #     videoId: 'HMWAKW303pg',
+    #     events: {
+    #       'onReady': onPlayerReady,
+    #       'onStateChange': onPlayerStateChange
+    #     }
+    #   })
+
+    # onPlayerReady: (event) ->
+    #   console.log("coo")
+    #   event.target.playVideo()
+
+    # done = false;
+    # onPlayerStateChange: (event) ->
+    #   if (event.data == YT.PlayerState.PLAYING && !done)
+    #     setTimeout(stopVideo, 6000)
+    #     done = true
+
+
