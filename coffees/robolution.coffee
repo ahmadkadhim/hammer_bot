@@ -141,8 +141,8 @@ $(document).ready ->
         angle += 20
         # ctx1.drawImage(head, xpos-12, ypos-56)
         rotateImage(head, xpos-12, ypos-56,head.width,head.height,angle)
-        ctx1.drawImage(r_arm, xpos+81, ypos-27)
-        ctx1.drawImage(l_arm, xpos-80, ypos-4)
+        rotateImage(r_arm, xpos+81, ypos-27,r_arm.width,r_arm.height,angle)
+        rotateImage(l_arm, xpos-80, ypos-4,l_arm.width,l_arm.height,angle)
 
       , 100
 
