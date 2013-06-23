@@ -108,7 +108,7 @@
     human = new Controller;
     server = new AjaxRequest;
     drawClown = function() {
-      var canvas, clown, clown_loc, ctx, head_x, head_y, l_arm_x, l_arm_y, r_arm_x, r_arm_y, rotateImage, torso_x, torso_y;
+      var canvas, clown, clown_loc, ctx, torso_x, torso_y;
       canvas = document.getElementById('canvas');
       ctx = canvas.getContext("2d");
       torso_x = (canvas.width - 156) / 2;
@@ -150,26 +150,34 @@
       };
       clown = new Image();
       clown.src = clown_loc.source;
-      head_x = torso_x - 15;
-      head_y = torso_y - 96;
-      r_arm_x = torso_x + 30;
-      r_arm_y = torso_y - 15;
-      l_arm_x = torso_x - 80;
-      l_arm_y = torso_y - 4;
-      clown.onload = function() {
+      return clown.onload = function() {
+        var angle, head_x, head_y, l_arm_x, l_arm_y, r_arm_x, r_arm_y;
+        head_x = torso_x - 15;
+        head_y = torso_y - 96;
+        r_arm_x = torso_x + 30;
+        r_arm_y = torso_y - 15;
+        l_arm_x = torso_x - 80;
+        l_arm_y = torso_y - 4;
         ctx.drawImage(clown, clown_loc.torso.position.x, clown_loc.torso.position.y, clown_loc.torso.width, clown_loc.torso.height, torso_x, torso_y, clown_loc.torso.width, clown_loc.torso.height);
         ctx.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, head_x, head_y, clown_loc.head.width, clown_loc.head.height);
         ctx.drawImage(clown, clown_loc.r_arm.position.x, clown_loc.r_arm.position.y, clown_loc.r_arm.width, clown_loc.r_arm.height, r_arm_x, r_arm_y, clown_loc.r_arm.width, clown_loc.r_arm.height);
-        return ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height);
-      };
-      return rotateImage = function(img, x, y, width, height, deg) {
-        var rad;
-        rad = (deg * Math.PI) / 180;
-        ctx.translate(x + width / 2, y + height / 2);
-        ctx.rotate(rad);
-        ctx.drawImage(img, width / 2 * (-1), height / 2 * (-1), width, height);
-        ctx.rotate(rad * (-1));
-        return ctx.translate((x + width / 2) * (-1), (y + height / 2) * (-1));
+        ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height);
+        angle = 0;
+        return setInterval(function() {
+          torso_x = Math.floor(Math.random() * (canvas.width - 156));
+          torso_y = Math.floor(Math.random() * (canvas.width - 100));
+          head_x = torso_x - 15;
+          head_y = torso_y - 96;
+          r_arm_x = torso_x + 30;
+          r_arm_y = torso_y - 15;
+          l_arm_x = torso_x - 80;
+          l_arm_y = torso_y - 4;
+          canvas.width = canvas.width;
+          ctx.drawImage(clown, clown_loc.torso.position.x, clown_loc.torso.position.y, clown_loc.torso.width, clown_loc.torso.height, torso_x, torso_y, clown_loc.torso.width, clown_loc.torso.height);
+          ctx.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, head_x, head_y, clown_loc.head.width, clown_loc.head.height);
+          ctx.drawImage(clown, clown_loc.r_arm.position.x, clown_loc.r_arm.position.y, clown_loc.r_arm.width, clown_loc.r_arm.height, r_arm_x, r_arm_y, clown_loc.r_arm.width, clown_loc.r_arm.height);
+          return ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height);
+        }, 1000);
       };
     };
     return drawClown();
