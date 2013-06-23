@@ -99,17 +99,15 @@ $(document).ready ->
 
     clown = new Image()
     clown.src = clown_loc.source
-    torso_x = (canvas.width-156)/2
-    torso_y = (canvas.height-100)/2
 
-    # drawImage(sprites,srcX,srcY,srcW,srcH,destX,destY,destW,destH)
+    # drawImage(spritesheet,srcX,srcY,srcW,srcH,destX,destY,destW,destH)
     clown.onload = ->
+      torso_x = 300       # (canvas.width-156)/2
+      torso_y = 200       # (canvas.height-100)/2
       head_x = torso_x - 15
       head_y = torso_y - 96
-
       r_arm_x = torso_x + 30
       r_arm_y = torso_y - 15
-
       l_arm_x = torso_x - 80
       l_arm_y = torso_y - 4
 
@@ -118,19 +116,38 @@ $(document).ready ->
       ctx.drawImage(clown, clown_loc.r_arm.position.x, clown_loc.r_arm.position.y, clown_loc.r_arm.width, clown_loc.r_arm.height, r_arm_x, r_arm_y, clown_loc.r_arm.width, clown_loc.r_arm.height)
       ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height)
 
+      angle = 0
       setInterval ->
-        # torso_x = Math.floor(Math.random()* 300)  #(canvas.width-230))
-        # torso_y = Math.floor(Math.random()* 300)  #(canvas.width-110))
+        # randomize!!!!!!
 
+        console.log "canvas width: #{canvas.width} and height #{canvas.height}"
+        # torso_x = Math.floor(Math.random()* 3)  #(canvas.width-230))
+        # torso_y = Math.floor(Math.random()* 3)  #(canvas.width-110))
+        center_x = 300              # (canvas.width/2) - (clown_loc.torso.width/2)
+        center_y = 200              # (canvas.height/2) - (clown_loc.torso.height/2)
+               #center_x, center_y)
+        torso_x = 210
+        torso_y = 110
+        head_x = torso_x - 15
+        head_y = torso_y - 96
+        r_arm_x = torso_x + 30
+        r_arm_y = torso_y - 15
+        l_arm_x = torso_x - 80
+        l_arm_y = torso_y - 4
+
+        to_rad = Math.PI / 180
         canvas.width = canvas.width
         ctx.drawImage(clown, clown_loc.torso.position.x, clown_loc.torso.position.y, clown_loc.torso.width, clown_loc.torso.height, torso_x, torso_y, clown_loc.torso.width, clown_loc.torso.height)
-        ctx.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, head_x, head_y, clown_loc.head.width, clown_loc.head.height)
         ctx.drawImage(clown, clown_loc.r_arm.position.x, clown_loc.r_arm.position.y, clown_loc.r_arm.width, clown_loc.r_arm.height, r_arm_x, r_arm_y, clown_loc.r_arm.width, clown_loc.r_arm.height)
         ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height)
-      , 1000
-
-
-
+        ctx.save()
+        console.log(head_x+clown_loc.head.width/2 ,head_y+clown_loc.head.height/2)
+        ctx.translate(head_x+clown_loc.head.width/2 ,head_y+clown_loc.head.height/2)
+        ctx.rotate(angle*to_rad)
+        ctx.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, 0,0, clown_loc.head.width, clown_loc.head.height)
+        ctx.restore()
+        angle += 1
+      , 50
 
   class MusicPlayer
     constructor: ->
@@ -145,17 +162,9 @@ $(document).ready ->
       song.setAttribute("id", "music_player")
       firstScriptTag = document.getElementsByTagName('script')[1]
       firstScriptTag.parentNode.insertBefore(song, firstScriptTag)
-    # stopPlaying: ->
-    #   $("#youtube_api").remove()
-    #   $("#music_player").remove()
-    #   $('youtube').remove()
-    #   $("#youtube_api").remove()
-    #   $("#music_player").remove()
-    #   $("script")[0].remove()
-    #   $("script")[0].remove()
-    #   $("script")[0].remove()
-
 
   moonwalk = new robotDance
   human = new Controller
   server = new AjaxRequest
+  drawClown()
+
