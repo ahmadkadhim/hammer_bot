@@ -82,6 +82,15 @@ $(document).ready ->
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext("2d")
 
+
+  # ----- canvas start screen ---------
+
+    ctx.font = "bold 80pt Calibri"
+    ctx.fillText "Clown", 130, 130
+    ctx.fillText "Dance!", 120, 250
+
+# ----- draw clown ---------
+
     torso_x = (canvas.width-156)/2
     torso_y = (canvas.height-100)/2
 
@@ -152,25 +161,35 @@ $(document).ready ->
 
   drawClown()
 
+
+
+
   # -----embed music via youtube -------
 
-  onYouTubeIframeAPIReady = ->
-    player = new YT.Player('player',
-      videoId: 'HMWAKW303pg'
-      events:
-        'onReady': onPlayerReady
-        'onStateChange': onPlayerStateChange
-    )
-  onYouTubeIframeAPIReady
+  # tag = document.createElement('script');
+  # tag.src = "https://www.youtube.com/iframe_api";
+  # firstScriptTag = document.getElementsByTagName('script')[0];
+  # firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-  onPlayerReady(event) ->
-    event.target.playVideo()
+  # window.onYouTubeIframeAPIReady ->
+  # player = new YT.Player('youtube', {
+  #   height: '390',
+  #   width: '640',
+  #   videoId: 'M7lc1UVf-VE',
+  #   events:
+  #     'onReady': onPlayerReady,
+  #     'onStateChange': onPlayerStateChange
+  #   }
+  # )
+
+  # window.onPlayerReady(event) ->
+  # event.target.playVideo()
 
   # done = false;
-  # onPlayerStateChange(event) ->
+  # window.onPlayerStateChange(event) ->
   #   if (event.data == YT.PlayerState.PLAYING && !done)
-  #     setTimeout(stopVideo, 6000)
-  #     done = true
+  #     setTimeout(stopVideo, 6000);
+  #     done = true;
 
-  #     stopVideo ->
-  #       player.stopVideo()
+  # stopVideo() ->
+  #   player.stopVideo
