@@ -86,97 +86,59 @@ $(document).ready ->
     canvas1 = document.getElementById('canvas1');
     ctx1 = canvas1.getContext("2d")
 
-    xpos = (canvas1.width-256)/2
-    ypos = (canvas1.height-200)/2
-    # clown_width = 256
-    # clown_height = 200
-    # clown = new Image()
-    # clown.src = "../hammer_bot/assets/clown.png"
+    torso_x = (canvas1.width-256)/2
+    torso_y = (canvas1.height-200)/2
 
-    clowns =
+    clown_loc =
+      source: "../hammer_bot/assets/spritesheet.png"
       torso:
-        source: "../hammer_bot/assets/clown_torso_100.png"
-        # width:
-        # height:
+        width: 100
+        height: 103
+        position:
+          x: 430
+          y: 50
       head:
-        source: "../hammer_bot/assets/clown_head.png"
-        # width:
-        # height:
+        width: 115
+        height: 93
+        position:
+          x: -50
+          y: -242
       r_arm:
-        source: "../hammer_bot/assets/clown_Rarm.png"
-        # width:
-        # height:
+        width: 80
+        height: 92
+        position:
+          x: 250
+          y: 50
       l_arm:
-        source:"../hammer_bot/assets/clown_Larm.png"
-        # width:
-        # height:
+        width: 100
+        height: 81
+        position:
+          x: 50
+          y: 50
 
+    clown = new Image()
+    clown.src = clown_loc.source
 
-.sprite {
-    background-image: url("../assets/spritesheet.png");
-    background-repeat: no-repeat;
-    display: block;
-}
-
-.sprite-clown_Larm {
-    width: 100px;
-    height: 81px;
-    background-position: -50px -50px;
-}
-
-.sprite-clown_Rarm {
-    width: 80px;
-    height: 92px;
-    background-position: -250px -50px;
-}
-
-.sprite-clown_head {
-    width: 115px;
-    height: 93px;
-    background-position: -50px -242px;
-}
-
-.sprite-clown_torso_100 {
-    width: 100px;
-    height: 103px;
-    background-position: -430px -50px;
-}
-
-
-    torso = new Image()
-    torso.src = clowns.torso.source
-
-    head = new Image()
-    head.src = clowns.head.source
-
-    r_arm = new Image()
-    r_arm.src = clowns.r_arm.source
-
-    l_arm = new Image()
-    l_arm.src = clowns.l_arm.source
-
-    torso.onload = ->
-      ctx1.drawImage(torso, xpos, ypos)
-    head.onload = ->
-      ctx1.drawImage(head, xpos-12, ypos-56)
-    r_arm.onload = ->
-      ctx1.drawImage(r_arm, xpos+81, ypos-27)
-    l_arm.onload = ->
-      ctx1.drawImage(l_arm, xpos-80, ypos-4)
+# img, sprite-x, sprite-y,spriteWidth,spriteHeight,canvasPosX,canvasPosY, spriteWidth,spriteHeight
+    clown.onload = (sprite)->
+      ctx1.drawImage(clown, clown_loc.torso.position.x, clown_loc.torso.position.y, clown_loc.torso.width, clown_loc.torso.height, torso_x, torso_y, clown_loc.torso.width, clown_loc.torso.height)
+      ctx1.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, torso_x, torso_y, clown_loc.head.width, clown_loc.head.height)
+      ctx1.drawImage(clown, clown_loc.r_arm.position.x, clown_loc.r_arm.position.y, clown_loc.r_arm.width, clown_loc.r_arm.height, torso_x, torso_y, clown_loc.r_arm.width, clown_loc.r_arm.height)
+      ctx1.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, torso_x, torso_y, clown_loc.l_arm.width, clown_loc.l_arm.height)
 
       angle = 0
       setInterval ->
-        xpos = Math.floor(Math.random()*(canvas1.width-256))
-        ypos = Math.floor(Math.random()*(canvas1.width-200))
+        torso_x = Math.floor(Math.random()*(canvas1.width-256))
+        torso_y = Math.floor(Math.random()*(canvas1.width-200))
         canvas1.width = canvas1.width
-        ctx1.drawImage(torso, xpos, ypos)
+        ctx1.drawImage(torso, torso_x, torso_y)
         angle += 20
-        # ctx1.drawImage(head, xpos-12, ypos-56)
-        rotateImage(head, xpos-12, ypos-56,head.width,head.height,angle)
-        rotateImage(r_arm, xpos+81, ypos-27,r_arm.width,r_arm.height,angle)
-        rotateImage(l_arm, xpos-80, ypos-4,l_arm.width,l_arm.height,angle)
+        # ctx1.drawImage(head, torso_x-12, torso_y-56)
+        rotateImage(head, torso_x-12, torso_y-56,head.width,head.height,angle)
+        rotateImage(r_arm, torso_x+81, torso_y-27,r_arm.width,r_arm.height,angle)
+        rotateImage(l_arm, torso_x-80, torso_y-4,l_arm.width,l_arm.height,angle)
 
-      , 100
+      , 300
 
 
     rotateImage = (img,x,y,width,height,deg) ->

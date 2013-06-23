@@ -108,56 +108,65 @@
     human = new Controller;
     server = new AjaxRequest;
     drawClown = function() {
-      var canvas1, clowns, ctx1, head, l_arm, r_arm, rotateImage, torso, xpos, ypos;
+      var canvas1, clown, clown_loc, ctx1, rotateImage, torso_x, torso_y;
       canvas1 = document.getElementById('canvas1');
       ctx1 = canvas1.getContext("2d");
-      xpos = (canvas1.width - 256) / 2;
-      ypos = (canvas1.height - 200) / 2;
-      clowns = {
+      torso_x = (canvas1.width - 256) / 2;
+      torso_y = (canvas1.height - 200) / 2;
+      clown_loc = {
+        source: "../hammer_bot/assets/spritesheet.png",
         torso: {
-          source: "../hammer_bot/assets/clown_torso_100.png"
+          width: 100,
+          height: 103,
+          position: {
+            x: 430,
+            y: 50
+          }
         },
         head: {
-          source: "../hammer_bot/assets/clown_head.png"
+          width: 115,
+          height: 93,
+          position: {
+            x: -50,
+            y: -242
+          }
         },
         r_arm: {
-          source: "../hammer_bot/assets/clown_Rarm.png"
+          width: 80,
+          height: 92,
+          position: {
+            x: 250,
+            y: 50
+          }
         },
         l_arm: {
-          source: "../hammer_bot/assets/clown_Larm.png"
+          width: 100,
+          height: 81,
+          position: {
+            x: 50,
+            y: 50
+          }
         }
       };
-      torso = new Image();
-      torso.src = clowns.torso.source;
-      head = new Image();
-      head.src = clowns.head.source;
-      r_arm = new Image();
-      r_arm.src = clowns.r_arm.source;
-      l_arm = new Image();
-      l_arm.src = clowns.l_arm.source;
-      torso.onload = function() {
-        return ctx1.drawImage(torso, xpos, ypos);
-      };
-      head.onload = function() {
-        return ctx1.drawImage(head, xpos - 12, ypos - 56);
-      };
-      r_arm.onload = function() {
-        return ctx1.drawImage(r_arm, xpos + 81, ypos - 27);
-      };
-      l_arm.onload = function() {
+      clown = new Image();
+      clown.src = clown_loc.source;
+      clown.onload = function(sprite) {
         var angle;
-        ctx1.drawImage(l_arm, xpos - 80, ypos - 4);
+        ctx1.drawImage(clown, clown_loc.torso.position.x, clown_loc.torso.position.y, clown_loc.torso.width, clown_loc.torso.height, torso_x, torso_y, clown_loc.torso.width, clown_loc.torso.height);
+        ctx1.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, torso_x, torso_y, clown_loc.head.width, clown_loc.head.height);
+        ctx1.drawImage(clown, clown_loc.r_arm.position.x, clown_loc.r_arm.position.y, clown_loc.r_arm.width, clown_loc.r_arm.height, torso_x, torso_y, clown_loc.r_arm.width, clown_loc.r_arm.height);
+        ctx1.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, torso_x, torso_y, clown_loc.l_arm.width, clown_loc.l_arm.height);
         angle = 0;
         return setInterval(function() {
-          xpos = Math.floor(Math.random() * (canvas1.width - 256));
-          ypos = Math.floor(Math.random() * (canvas1.width - 200));
+          torso_x = Math.floor(Math.random() * (canvas1.width - 256));
+          torso_y = Math.floor(Math.random() * (canvas1.width - 200));
           canvas1.width = canvas1.width;
-          ctx1.drawImage(torso, xpos, ypos);
+          ctx1.drawImage(torso, torso_x, torso_y);
           angle += 20;
-          rotateImage(head, xpos - 12, ypos - 56, head.width, head.height, angle);
-          rotateImage(r_arm, xpos + 81, ypos - 27, r_arm.width, r_arm.height, angle);
-          return rotateImage(l_arm, xpos - 80, ypos - 4, l_arm.width, l_arm.height, angle);
-        }, 100);
+          rotateImage(head, torso_x - 12, torso_y - 56, head.width, head.height, angle);
+          rotateImage(r_arm, torso_x + 81, torso_y - 27, r_arm.width, r_arm.height, angle);
+          return rotateImage(l_arm, torso_x - 80, torso_y - 4, l_arm.width, l_arm.height, angle);
+        }, 300);
       };
       return rotateImage = function(img, x, y, width, height, deg) {
         var rad;

@@ -12,3 +12,7 @@ rewritten in nice coffeescript
 Added Buttons to landing page for two separate modes:
 - user mode: User is confronted with a control pad of arrow keys
 - dance mode: the robot dances by itself while a canvas animation occurs
+
+
+
+
