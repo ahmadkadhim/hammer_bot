@@ -145,9 +145,19 @@
         return ctx1.drawImage(r_arm, xpos + 81, ypos - 27);
       };
       l_arm.onload = function() {
-        return ctx1.drawImage(l_arm, xpos - 80, ypos - 4);
+        var angle;
+        ctx1.drawImage(l_arm, xpos - 80, ypos - 4);
+        angle = 0;
+        return setInterval(function() {
+          canvas1.width = canvas1.width;
+          ctx1.drawImage(torso, xpos, ypos);
+          angle += 20;
+          rotateImage(head, xpos - 12, ypos - 56, head.width, head.height, angle);
+          ctx1.drawImage(r_arm, xpos + 81, ypos - 27);
+          return ctx1.drawImage(l_arm, xpos - 80, ypos - 4);
+        }, 100);
       };
-      rotateImage = function(img, x, y, width, height, deg) {
+      return rotateImage = function(img, x, y, width, height, deg) {
         var rad;
         rad = (deg * Math.PI) / 180;
         ctx1.translate(x + width / 2, y + height / 2);
@@ -156,9 +166,6 @@
         ctx1.rotate(rad * (-1));
         return ctx1.translate((x + width / 2) * (-1), (y + height / 2) * (-1));
       };
-      return $(document).click(function() {
-        return rotateImage(head, xpos - 12, ypos - 56, 100, 100, 20);
-      });
     };
     return drawClown();
   });

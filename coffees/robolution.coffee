@@ -132,16 +132,19 @@ $(document).ready ->
     l_arm.onload = ->
       ctx1.drawImage(l_arm, xpos-80, ypos-4)
 
+      angle = 0
+      setInterval ->
+        # xpos = Math.floor(Math.random()*(canvas1.width-256))
+        # ypos = Math.floor(Math.random()*(canvas1.width-200))
+        canvas1.width = canvas1.width
+        ctx1.drawImage(torso, xpos, ypos)
+        angle += 20
+        # ctx1.drawImage(head, xpos-12, ypos-56)
+        rotateImage(head, xpos-12, ypos-56,head.width,head.height,angle)
+        ctx1.drawImage(r_arm, xpos+81, ypos-27)
+        ctx1.drawImage(l_arm, xpos-80, ypos-4)
 
-      # setInterval ->
-      #   xpos = Math.floor(Math.random()*(canvas1.width-256))
-      #   ypos = Math.floor(Math.random()*(canvas1.width-200))
-      #   canvas1.width = canvas1.width
-      #   ctx1.drawImage(torso, xpos, ypos)
-      #   ctx1.drawImage(head, xpos-12, ypos-56)
-      #   ctx1.rotate(0.17)
-
-      # , 1000
+      , 100
 
 
     rotateImage = (img,x,y,width,height,deg) ->
@@ -153,8 +156,6 @@ $(document).ready ->
       ctx1.rotate(rad * ( -1 ) );
       ctx1.translate((x + width / 2) * (-1), (y + height / 2) * (-1))
 
-    $(document).click ->
-      rotateImage(head, xpos-12, ypos-56,100,100,20)
 
 
 
