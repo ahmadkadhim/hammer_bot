@@ -16,10 +16,8 @@ $(document).ready ->
       direction = {}
       $("##{keyMap[e.keyCode].id}").addClass("selected")
       server.get(keyMap[e.keyCode].direction)
-
     $(document).keyup (e) ->
       $("##{keyMap[e.keyCode].id}").removeClass("selected")
-
 
   class AjaxRequest     # ----- server is at : 192.168.0.105 ------
     get: (input) ->
@@ -77,6 +75,31 @@ $(document).ready ->
 
   human = new Controller
   server = new AjaxRequest
+
+# ------- KINETIC.JS CANVAS -------
+
+  # stage = new Kinetic.stage
+  #   container: "canvas"
+  #   width: 580
+  #   height: 340
+
+  # layer = new Kinetic.later
+
+  # textpath = new Kinetic.TextPath
+  #   x: 100
+  #   y: 50
+  #   fill: "#444"
+  #   fontSize: "24"
+  #   fontFamily: "Arial"
+  #   text: "Clown Dance!"
+  #   data: "M10, 10 C0,0 10,150 100,100 S300,150 400,50"
+
+  # layer.add(textpath)
+  # stage.add(layer)
+
+
+
+
 
  # --------- CANVAS -----------
     # dimensions:   width:  580 height:   340
@@ -145,8 +168,8 @@ $(document).ready ->
 
       angle = 0
       setInterval ->
-        torso_x = Math.floor(Math.random()* 3)  #(canvas.width-230))
-        torso_y = Math.floor(Math.random()* 3)  #(canvas.width-110))
+        torso_x = Math.floor(Math.random()* 300)  #(canvas.width-230))
+        torso_y = Math.floor(Math.random()* 300)  #(canvas.width-110))
         head_x = torso_x - 15
         head_y = torso_y - 96
 
@@ -166,10 +189,31 @@ $(document).ready ->
 
 
 
+  window.requestAnimFrame (callback) ->
+    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
+    callback ->
+      window.setTimeout(callback, 1000 / 60)
+
+  animate ->
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    requestAnimFrame ->
+      animate()
+
+  animate()
+
+
+
+
+
+
+
+
+
+
   class MusicPlayer
     constructor: ->
       tag = document.createElement('script')
-      tag.src = "https://www.youtube.com/iframe_api"
+      # tag.src = "https://www.youtube.com/iframe_api"
       tag.setAttribute("id", "youtube_api")
       firstScriptTag = document.getElementsByTagName('script')[0]
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
@@ -180,7 +224,6 @@ $(document).ready ->
       song.setAttribute("id", "music_player")
       firstScriptTag = document.getElementsByTagName('script')[1]
       firstScriptTag.parentNode.insertBefore(song, firstScriptTag)
-      console.log "sars"
 
     # stopPlaying: ->
     #   $("#youtube_api").remove()
@@ -191,30 +234,3 @@ $(document).ready ->
     #   $("script")[0].remove()
     #   $("script")[0].remove()
     #   $("script")[0].remove()
-
-
-
-
-    # onYouTubeIframeAPIReady: ->
-    #   player = new YT.Player('player', {
-    #     height: '200',
-    #     width: '500',
-    #     playerVars:{'autoplay':1},
-    #     videoId: 'HMWAKW303pg',
-    #     events: {
-    #       'onReady': onPlayerReady,
-    #       'onStateChange': onPlayerStateChange
-    #     }
-    #   })
-
-    # onPlayerReady: (event) ->
-    #   console.log("coo")
-    #   event.target.playVideo()
-
-    # done = false;
-    # onPlayerStateChange: (event) ->
-    #   if (event.data == YT.PlayerState.PLAYING && !done)
-    #     setTimeout(stopVideo, 6000)
-    #     done = true
-
-

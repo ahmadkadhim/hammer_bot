@@ -172,8 +172,8 @@
         ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height);
         angle = 0;
         return setInterval(function() {
-          torso_x = Math.floor(Math.random() * 3);
-          torso_y = Math.floor(Math.random() * 3);
+          torso_x = Math.floor(Math.random() * 300);
+          torso_y = Math.floor(Math.random() * 300);
           head_x = torso_x - 15;
           head_y = torso_y - 96;
           r_arm_x = torso_x + 30;
@@ -189,11 +189,22 @@
       };
     };
     drawClown();
+    window.requestAnimFrame(function(callback) {
+      return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame || callback(function() {
+        return window.setTimeout(callback, 1000 / 60);
+      });
+    });
+    animate(function() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      return requestAnimFrame(function() {
+        return animate();
+      });
+    });
+    animate();
     return MusicPlayer = (function() {
       function MusicPlayer() {
         var firstScriptTag, tag;
         tag = document.createElement('script');
-        tag.src = "https://www.youtube.com/iframe_api";
         tag.setAttribute("id", "youtube_api");
         firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
@@ -205,8 +216,7 @@
         song.src = "js/youtube.js";
         song.setAttribute("id", "music_player");
         firstScriptTag = document.getElementsByTagName('script')[1];
-        firstScriptTag.parentNode.insertBefore(song, firstScriptTag);
-        return console.log("sars");
+        return firstScriptTag.parentNode.insertBefore(song, firstScriptTag);
       };
 
       return MusicPlayer;
