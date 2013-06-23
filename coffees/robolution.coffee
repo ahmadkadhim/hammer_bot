@@ -44,7 +44,7 @@ $(document).ready ->
 
 
 # -----ROBOT DANCE -----
-  class Dance
+  class robotDance
     moves = [37,38,39,40] # ,65,68,0]  aren't in the keyMap yet
 
     start: (duration) ->      # duration is in ms
@@ -67,60 +67,15 @@ $(document).ready ->
     stopDancing: ->
       clearInterval(keep_dancing)
 
-  moonwalk = new Dance
-
- # create the relevant classes:
- #  since human and server are listening to window, they should never
- #  need to be interacted with
-
-  human = new Controller
-  server = new AjaxRequest
-
-# ------- KINETIC.JS CANVAS -------
-
-  # stage = new Kinetic.stage
-  #   container: "canvas"
-  #   width: 580
-  #   height: 340
-
-  # layer = new Kinetic.later
-
-  # textpath = new Kinetic.TextPath
-  #   x: 100
-  #   y: 50
-  #   fill: "#444"
-  #   fontSize: "24"
-  #   fontFamily: "Arial"
-  #   text: "Clown Dance!"
-  #   data: "M10, 10 C0,0 10,150 100,100 S300,150 400,50"
-
-  # layer.add(textpath)
-  # stage.add(layer)
-
-
-
-
-
- # --------- CANVAS -----------
-    # dimensions:   width:  580 height:   340
 
   drawClown = ->
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext("2d")
-
-
-  # ----- canvas start screen ---------
-
     ctx.font = "bold 80pt Calibri"
     ctx.fillText "Clown", 130, 130
     ctx.fillText "Dance!", 120, 250
 
-# ----- draw clown ---------
-
-    torso_x = (canvas.width-156)/2
-    torso_y = (canvas.height-100)/2
-
-    clown_loc =
+    clown_loc =       # sprite sheet with location of clown parts
       source: "../hammer_bot/assets/spritesheet.png"
       torso:
         width: 100
@@ -149,6 +104,9 @@ $(document).ready ->
 
     clown = new Image()
     clown.src = clown_loc.source
+    torso_x = (canvas.width-156)/2
+    torso_y = (canvas.height-100)/2
+
 
 # img, sprite-x, sprite-y,spriteWidth,spriteHeight,canvasPosX,canvasPosY, spriteWidth,spriteHeight
     clown.onload = ->
@@ -161,23 +119,18 @@ $(document).ready ->
       l_arm_x = torso_x - 80
       l_arm_y = torso_y - 4
 
+      ctx.translate(canvas.width / 2, canvas.height / 2);
+      ctx.rotate(Math.PI / 4);
+
       ctx.drawImage(clown, clown_loc.torso.position.x, clown_loc.torso.position.y, clown_loc.torso.width, clown_loc.torso.height, torso_x, torso_y, clown_loc.torso.width, clown_loc.torso.height)
       ctx.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, head_x, head_y, clown_loc.head.width, clown_loc.head.height)
       ctx.drawImage(clown, clown_loc.r_arm.position.x, clown_loc.r_arm.position.y, clown_loc.r_arm.width, clown_loc.r_arm.height, r_arm_x, r_arm_y, clown_loc.r_arm.width, clown_loc.r_arm.height)
       ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height)
 
-      angle = 0
       setInterval ->
-        torso_x = Math.floor(Math.random()* 300)  #(canvas.width-230))
-        torso_y = Math.floor(Math.random()* 300)  #(canvas.width-110))
-        head_x = torso_x - 15
-        head_y = torso_y - 96
+        # torso_x = Math.floor(Math.random()* 300)  #(canvas.width-230))
+        # torso_y = Math.floor(Math.random()* 300)  #(canvas.width-110))
 
-        r_arm_x = torso_x + 30
-        r_arm_y = torso_y - 15
-
-        l_arm_x = torso_x - 80
-        l_arm_y = torso_y - 4
         canvas.width = canvas.width
         ctx.drawImage(clown, clown_loc.torso.position.x, clown_loc.torso.position.y, clown_loc.torso.width, clown_loc.torso.height, torso_x, torso_y, clown_loc.torso.width, clown_loc.torso.height)
         ctx.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, head_x, head_y, clown_loc.head.width, clown_loc.head.height)
@@ -186,23 +139,6 @@ $(document).ready ->
       , 1000
 
   drawClown()
-
-
-
-  window.requestAnimFrame (callback) ->
-    return window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || window.oRequestAnimationFrame || window.msRequestAnimationFrame ||
-    callback ->
-      window.setTimeout(callback, 1000 / 60)
-
-  animate ->
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
-    requestAnimFrame ->
-      animate()
-
-  animate()
-
-
-
 
 
 
@@ -234,3 +170,8 @@ $(document).ready ->
     #   $("script")[0].remove()
     #   $("script")[0].remove()
     #   $("script")[0].remove()
+
+
+  moonwalk = new robotDance
+  human = new Controller
+  server = new AjaxRequest
