@@ -111,6 +111,38 @@ $(document).ready ->
         # width:
         # height:
 
+
+.sprite {
+    background-image: url("../assets/spritesheet.png");
+    background-repeat: no-repeat;
+    display: block;
+}
+
+.sprite-clown_Larm {
+    width: 100px;
+    height: 81px;
+    background-position: -50px -50px;
+}
+
+.sprite-clown_Rarm {
+    width: 80px;
+    height: 92px;
+    background-position: -250px -50px;
+}
+
+.sprite-clown_head {
+    width: 115px;
+    height: 93px;
+    background-position: -50px -242px;
+}
+
+.sprite-clown_torso_100 {
+    width: 100px;
+    height: 103px;
+    background-position: -430px -50px;
+}
+
+
     torso = new Image()
     torso.src = clowns.torso.source
 
@@ -134,8 +166,8 @@ $(document).ready ->
 
       angle = 0
       setInterval ->
-        # xpos = Math.floor(Math.random()*(canvas1.width-256))
-        # ypos = Math.floor(Math.random()*(canvas1.width-200))
+        xpos = Math.floor(Math.random()*(canvas1.width-256))
+        ypos = Math.floor(Math.random()*(canvas1.width-200))
         canvas1.width = canvas1.width
         ctx1.drawImage(torso, xpos, ypos)
         angle += 20

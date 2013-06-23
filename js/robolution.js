@@ -149,6 +149,8 @@
         ctx1.drawImage(l_arm, xpos - 80, ypos - 4);
         angle = 0;
         return setInterval(function() {
+          xpos = Math.floor(Math.random() * (canvas1.width - 256));
+          ypos = Math.floor(Math.random() * (canvas1.width - 200));
           canvas1.width = canvas1.width;
           ctx1.drawImage(torso, xpos, ypos);
           angle += 20;
