@@ -2,6 +2,7 @@ $(document).ready ->
 
   $(".controller").hide()
   $("#youtube").hide()
+  $(".canvas-frame").hide()
 
   keyMap =
     37: direction: {strafe:  +1}, id: "left"
@@ -169,15 +170,30 @@ $(document).ready ->
     constructor: ->
       tag = document.createElement('script')
       tag.src = "https://www.youtube.com/iframe_api"
+      tag.setAttribute("id", "youtube_api")
       firstScriptTag = document.getElementsByTagName('script')[0]
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
 
     startPlaying: ->
       song = document.createElement('script')
       song.src = "js/youtube.js"
+      song.setAttribute("id", "music_player")
       firstScriptTag = document.getElementsByTagName('script')[1]
       firstScriptTag.parentNode.insertBefore(song, firstScriptTag)
       console.log "sars"
+
+    # stopPlaying: ->
+    #   $("#youtube_api").remove()
+    #   $("#music_player").remove()
+    #   $('youtube').remove()
+    #   $("#youtube_api").remove()
+    #   $("#music_player").remove()
+    #   $("script")[0].remove()
+    #   $("script")[0].remove()
+    #   $("script")[0].remove()
+
+
+
 
     # onYouTubeIframeAPIReady: ->
     #   player = new YT.Player('player', {

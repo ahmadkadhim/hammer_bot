@@ -4,6 +4,7 @@
     var AjaxRequest, Controller, Dance, MusicPlayer, drawClown, human, keyMap, moonwalk, server;
     $(".controller").hide();
     $("#youtube").hide();
+    $(".canvas-frame").hide();
     keyMap = {
       37: {
         direction: {
@@ -193,6 +194,7 @@
         var firstScriptTag, tag;
         tag = document.createElement('script');
         tag.src = "https://www.youtube.com/iframe_api";
+        tag.setAttribute("id", "youtube_api");
         firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
       }
@@ -201,6 +203,7 @@
         var firstScriptTag, song;
         song = document.createElement('script');
         song.src = "js/youtube.js";
+        song.setAttribute("id", "music_player");
         firstScriptTag = document.getElementsByTagName('script')[1];
         firstScriptTag.parentNode.insertBefore(song, firstScriptTag);
         return console.log("sars");
