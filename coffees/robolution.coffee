@@ -128,8 +128,6 @@ $(document).ready ->
                #center_x, center_y)
         torso_x = 210
         torso_y = 110
-        head_x = torso_x - 15
-        head_y = torso_y - 96
         r_arm_x = torso_x + 30
         r_arm_y = torso_y - 15
         l_arm_x = torso_x - 80
@@ -141,10 +139,10 @@ $(document).ready ->
         ctx.drawImage(clown, clown_loc.r_arm.position.x, clown_loc.r_arm.position.y, clown_loc.r_arm.width, clown_loc.r_arm.height, r_arm_x, r_arm_y, clown_loc.r_arm.width, clown_loc.r_arm.height)
         ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height)
         ctx.save()
-        console.log(head_x+clown_loc.head.width/2 ,head_y+clown_loc.head.height/2)
-        ctx.translate(head_x+clown_loc.head.width/2 ,head_y+clown_loc.head.height/2)
+        ctx.translate(265,105) #head_x+(clown_loc.head.width/2) ,head_y+(clown_loc.head.height/2))
         ctx.rotate(angle*to_rad)
-        ctx.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, 0,0, clown_loc.head.width, clown_loc.head.height)
+        ctx.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, -75,-85, clown_loc.head.width, clown_loc.head.height)
+        ctx.translate(-265,-105)
         ctx.restore()
         angle += 1
       , 50
