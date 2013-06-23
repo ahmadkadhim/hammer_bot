@@ -133,8 +133,8 @@ $(document).ready ->
 
       angle = 0
       setInterval ->
-        torso_x = Math.floor(Math.random()*(canvas.width-156))
-        torso_y = Math.floor(Math.random()*(canvas.width-100))
+        torso_x = Math.floor(Math.random()*(canvas.width-230))
+        torso_y = Math.floor(Math.random()*(canvas.width-110))
         head_x = torso_x - 15
         head_y = torso_y - 96
 

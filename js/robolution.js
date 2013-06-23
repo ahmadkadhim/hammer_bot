@@ -164,8 +164,8 @@
         ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height);
         angle = 0;
         return setInterval(function() {
-          torso_x = Math.floor(Math.random() * (canvas.width - 156));
-          torso_y = Math.floor(Math.random() * (canvas.width - 100));
+          torso_x = Math.floor(Math.random() * (canvas.width - 230));
+          torso_y = Math.floor(Math.random() * (canvas.width - 110));
           head_x = torso_x - 15;
           head_y = torso_y - 96;
           r_arm_x = torso_x + 30;
