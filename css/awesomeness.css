@@ -138,3 +138,16 @@
     margin: auto;
     margin-top: 10px;
 }
+
+#youtube {
+    margin: 20px;
+    border: 1px solid black;
+    height: 250px;
+    width: 610px;
+    background-color: gray;
+    border-radius: 10px;
+}
+
+#player {
+    margin: 25px;
+}

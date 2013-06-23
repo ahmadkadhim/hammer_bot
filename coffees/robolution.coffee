@@ -1,6 +1,7 @@
 $(document).ready ->
 
   $(".controller").hide()
+  # $("#youtube").hide()
 
   keyMap =
     37: direction: {strafe:  +1}, id: "left"
@@ -41,6 +42,7 @@ $(document).ready ->
     $(".controller").fadeIn(400)
 
 
+# -----ROBOT DANCE -----
   class Dance
     moves = [37,38,39,40] # ,65,68,0]  aren't in the keyMap yet
 
@@ -64,14 +66,7 @@ $(document).ready ->
     stopDancing: ->
       clearInterval(keep_dancing)
 
-
-
-
   moonwalk = new Dance
-
-
-
-
 
  # create the relevant classes:
  #  since human and server are listening to window, they should never
@@ -80,6 +75,7 @@ $(document).ready ->
   human = new Controller
   server = new AjaxRequest
 
+ # --------- CANVAS -----------
     # dimensions:   width:  580 height:   340
 
   drawClown = ->
@@ -119,7 +115,6 @@ $(document).ready ->
     clown = new Image()
     clown.src = clown_loc.source
 
-
 # img, sprite-x, sprite-y,spriteWidth,spriteHeight,canvasPosX,canvasPosY, spriteWidth,spriteHeight
     clown.onload = ->
       head_x = torso_x - 15
@@ -155,9 +150,27 @@ $(document).ready ->
         ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height)
       , 1000
 
-
-
-
   drawClown()
 
+  # -----embed music via youtube -------
 
+  onYouTubeIframeAPIReady = ->
+    player = new YT.Player('player',
+      videoId: 'HMWAKW303pg'
+      events:
+        'onReady': onPlayerReady
+        'onStateChange': onPlayerStateChange
+    )
+  onYouTubeIframeAPIReady
+
+  onPlayerReady(event) ->
+    event.target.playVideo()
+
+  # done = false;
+  # onPlayerStateChange(event) ->
+  #   if (event.data == YT.PlayerState.PLAYING && !done)
+  #     setTimeout(stopVideo, 6000)
+  #     done = true
+
+  #     stopVideo ->
+  #       player.stopVideo()
