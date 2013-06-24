@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "file": "dancecanvas.js",
+  "sourceRoot": "..",
+  "sources": [
+    "coffees/dancecanvas.coffee"
+  ],
+  "names": [],
+  "mappings": ";AAIE;CAAA,KAAA,KAAA;;CAAA,CAAA,CAAS,GAAT,EAAiB,MAAR;;CAAT,CACA,CAAA,CAAM,EAAM,IAAN;;CADN,CAKA,CAAG,MAAH;;CALA,CAMA,CAAG,GAAH;;CANA,CAOA,CAAG,GAAH;;CAPA,CAQA,CAAG,GAAH;CARA"
+}

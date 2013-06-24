@@ -15,3 +15,7 @@
   ctx.stroke();
 
 }).call(this);
+
+/*
+//@ sourceMappingURL=dancecanvas.map
+*/

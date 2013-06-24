@@ -2,9 +2,9 @@
 (function() {
   $(document).ready(function() {
     var AjaxRequest, Controller, MusicPlayer, drawClown, human, keyMap, moonwalk, robotDance, server;
-    $(".controller").hide();
     $("#youtube").hide();
     $(".canvas-frame").hide();
+    $("#controls").addClass("button-choice");
     keyMap = {
       37: {
         direction: {
@@ -68,9 +68,10 @@
       $(this).addClass("button-choice");
       $(".controller").fadeOut(400);
       $(".canvas-frame").fadeIn(400);
-      moonwalk.start(5000);
+      drawClown();
       bigtop = new MusicPlayer;
-      return bigtop.startPlaying();
+      bigtop.startPlaying();
+      return moonwalk.start(2000);
     });
     $("#controls").click(function() {
       $(".button").removeClass("button-choice");
@@ -83,7 +84,7 @@
 
       function robotDance() {}
 
-      moves = [37, 38, 39, 40];
+      moves = [37, 38, 39, 40, 65, 68, 0];
 
       robotDance.prototype.start = function(duration) {
         var keep_dancing, start_time;
@@ -93,17 +94,10 @@
           now_time = Date.now();
           current_move = moves[Math.floor(Math.random() * moves.length)];
           if (start_time + duration <= now_time) {
-            console.log("time's up");
             clearInterval(keep_dancing);
           }
-          console.log("start time: " + start_time + ", now time: " + now_time);
-          console.log("time left: " + (((start_time + duration) - now_time) / 1000));
           return server.get(keyMap[current_move].direction);
         }, 1000);
-      };
-
-      robotDance.prototype.stopDancing = function() {
-        return clearInterval(keep_dancing);
       };
 
       return robotDance;
@@ -154,23 +148,12 @@
       clown = new Image();
       clown.src = clown_loc.source;
       return clown.onload = function() {
-        var angle, creepyAnimate, head_x, head_y, l_arm_x, l_arm_y, r_arm_x, r_arm_y, torso_x, torso_y;
-        torso_x = 300;
-        torso_y = 200;
-        head_x = torso_x - 15;
-        head_y = torso_y - 96;
-        r_arm_x = torso_x + 30;
-        r_arm_y = torso_y - 15;
-        l_arm_x = torso_x - 80;
-        l_arm_y = torso_y - 4;
-        ctx.drawImage(clown, clown_loc.torso.position.x, clown_loc.torso.position.y, clown_loc.torso.width, clown_loc.torso.height, torso_x, torso_y, clown_loc.torso.width, clown_loc.torso.height);
-        ctx.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, head_x, head_y, clown_loc.head.width, clown_loc.head.height);
-        ctx.drawImage(clown, clown_loc.r_arm.position.x, clown_loc.r_arm.position.y, clown_loc.r_arm.width, clown_loc.r_arm.height, r_arm_x, r_arm_y, clown_loc.r_arm.width, clown_loc.r_arm.height);
-        ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height);
+        var angle, creepyAnimate, r_wave;
         angle = 0;
+        r_wave = 0;
         creepyAnimate = function() {
           return setInterval(function() {
-            var center_x, center_y, to_rad;
+            var center_x, center_y, l_arm_x, l_arm_y, r_arm_x, r_arm_y, to_rad, torso_x, torso_y;
             center_x = 300;
             center_y = 200;
             torso_x = 210;
@@ -194,6 +177,7 @@
           }, 50);
         };
         return setTimeout(function() {
+          $("#canvas").css("background-color", "red");
           return creepyAnimate();
         }, 5000);
       };
@@ -222,8 +206,11 @@
     })();
     moonwalk = new robotDance;
     human = new Controller;
-    server = new AjaxRequest;
-    return drawClown();
+    return server = new AjaxRequest;
   });
 
 }).call(this);
+
+/*
+//@ sourceMappingURL=robolution.map
+*/

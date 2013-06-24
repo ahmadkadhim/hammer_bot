@@ -2,13 +2,17 @@
 
 #DANCE DANCE ROBOLUTION ®
 
+##Obj_clown branch:
+- (abandoned)
+
 ##Kinetic branch:
-- use kinetic.js to animate different sprites
 music added via the youtube iframe API
 - html5 not flash
 - plays in hidden video player
 - button creates object that imports youtube.js
 - youtube.js links to the API
+Sprite rotation
+- head rotates more-or-less on its center
 
 ##sprite_sheet branch:
 Added a Clown to the Canvas
