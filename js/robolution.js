@@ -154,7 +154,7 @@
       clown = new Image();
       clown.src = clown_loc.source;
       return clown.onload = function() {
-        var angle, head_x, head_y, l_arm_x, l_arm_y, r_arm_x, r_arm_y, torso_x, torso_y;
+        var angle, creepyAnimate, head_x, head_y, l_arm_x, l_arm_y, r_arm_x, r_arm_y, torso_x, torso_y;
         torso_x = 300;
         torso_y = 200;
         head_x = torso_x - 15;
@@ -168,36 +168,41 @@
         ctx.drawImage(clown, clown_loc.r_arm.position.x, clown_loc.r_arm.position.y, clown_loc.r_arm.width, clown_loc.r_arm.height, r_arm_x, r_arm_y, clown_loc.r_arm.width, clown_loc.r_arm.height);
         ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height);
         angle = 0;
-        return setInterval(function() {
-          var center_x, center_y, to_rad;
-          console.log("canvas width: " + canvas.width + " and height " + canvas.height);
-          center_x = 300;
-          center_y = 200;
-          torso_x = 210;
-          torso_y = 110;
-          r_arm_x = torso_x + 30;
-          r_arm_y = torso_y - 15;
-          l_arm_x = torso_x - 80;
-          l_arm_y = torso_y - 4;
-          to_rad = Math.PI / 180;
-          canvas.width = canvas.width;
-          ctx.drawImage(clown, clown_loc.torso.position.x, clown_loc.torso.position.y, clown_loc.torso.width, clown_loc.torso.height, torso_x, torso_y, clown_loc.torso.width, clown_loc.torso.height);
-          ctx.drawImage(clown, clown_loc.r_arm.position.x, clown_loc.r_arm.position.y, clown_loc.r_arm.width, clown_loc.r_arm.height, r_arm_x, r_arm_y, clown_loc.r_arm.width, clown_loc.r_arm.height);
-          ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height);
-          ctx.save();
-          ctx.translate(265, 105);
-          ctx.rotate(angle * to_rad);
-          ctx.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, -75, -85, clown_loc.head.width, clown_loc.head.height);
-          ctx.translate(-265, -105);
-          ctx.restore();
-          return angle += 1;
-        }, 50);
+        creepyAnimate = function() {
+          return setInterval(function() {
+            var center_x, center_y, to_rad;
+            center_x = 300;
+            center_y = 200;
+            torso_x = 210;
+            torso_y = 110;
+            r_arm_x = torso_x + 30;
+            r_arm_y = torso_y - 15;
+            l_arm_x = torso_x - 80;
+            l_arm_y = torso_y - 4;
+            to_rad = Math.PI / 180;
+            canvas.width = canvas.width;
+            ctx.drawImage(clown, clown_loc.torso.position.x, clown_loc.torso.position.y, clown_loc.torso.width, clown_loc.torso.height, torso_x, torso_y, clown_loc.torso.width, clown_loc.torso.height);
+            ctx.drawImage(clown, clown_loc.r_arm.position.x, clown_loc.r_arm.position.y, clown_loc.r_arm.width, clown_loc.r_arm.height, r_arm_x, r_arm_y, clown_loc.r_arm.width, clown_loc.r_arm.height);
+            ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height);
+            ctx.save();
+            ctx.translate(265, 105);
+            ctx.rotate(angle * to_rad);
+            ctx.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, -75, -85, clown_loc.head.width, clown_loc.head.height);
+            ctx.translate(-265, -105);
+            ctx.restore();
+            return angle += 1;
+          }, 50);
+        };
+        return setTimeout(function() {
+          return creepyAnimate();
+        }, 5000);
       };
     };
     MusicPlayer = (function() {
       function MusicPlayer() {
         var firstScriptTag, tag;
         tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
         tag.setAttribute("id", "youtube_api");
         firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);

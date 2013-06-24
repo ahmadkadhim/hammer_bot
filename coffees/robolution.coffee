@@ -117,40 +117,43 @@ $(document).ready ->
       ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height)
 
       angle = 0
-      setInterval ->
-        # randomize!!!!!!
+      creepyAnimate = ->
+        setInterval ->
+          # randomize!!!!!!
+          # torso_x = Math.floor(Math.random()* 3)  #(canvas.width-230))
+          # torso_y = Math.floor(Math.random()* 3)  #(canvas.width-110))
+          center_x = 300              # (canvas.width/2) - (clown_loc.torso.width/2)
+          center_y = 200              # (canvas.height/2) - (clown_loc.torso.height/2)
+                 #center_x, center_y)
+          torso_x = 210
+          torso_y = 110
+          r_arm_x = torso_x + 30
+          r_arm_y = torso_y - 15
+          l_arm_x = torso_x - 80
+          l_arm_y = torso_y - 4
 
-        console.log "canvas width: #{canvas.width} and height #{canvas.height}"
-        # torso_x = Math.floor(Math.random()* 3)  #(canvas.width-230))
-        # torso_y = Math.floor(Math.random()* 3)  #(canvas.width-110))
-        center_x = 300              # (canvas.width/2) - (clown_loc.torso.width/2)
-        center_y = 200              # (canvas.height/2) - (clown_loc.torso.height/2)
-               #center_x, center_y)
-        torso_x = 210
-        torso_y = 110
-        r_arm_x = torso_x + 30
-        r_arm_y = torso_y - 15
-        l_arm_x = torso_x - 80
-        l_arm_y = torso_y - 4
+          to_rad = Math.PI / 180
+          canvas.width = canvas.width
+          ctx.drawImage(clown, clown_loc.torso.position.x, clown_loc.torso.position.y, clown_loc.torso.width, clown_loc.torso.height, torso_x, torso_y, clown_loc.torso.width, clown_loc.torso.height)
+          ctx.drawImage(clown, clown_loc.r_arm.position.x, clown_loc.r_arm.position.y, clown_loc.r_arm.width, clown_loc.r_arm.height, r_arm_x, r_arm_y, clown_loc.r_arm.width, clown_loc.r_arm.height)
+          ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height)
+          ctx.save()
+          ctx.translate(265,105) #head_x+(clown_loc.head.width/2) ,head_y+(clown_loc.head.height/2))
+          ctx.rotate(angle*to_rad)
+          ctx.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, -75,-85, clown_loc.head.width, clown_loc.head.height)
+          ctx.translate(-265,-105)
+          ctx.restore()
+          angle += 1
+        , 50
 
-        to_rad = Math.PI / 180
-        canvas.width = canvas.width
-        ctx.drawImage(clown, clown_loc.torso.position.x, clown_loc.torso.position.y, clown_loc.torso.width, clown_loc.torso.height, torso_x, torso_y, clown_loc.torso.width, clown_loc.torso.height)
-        ctx.drawImage(clown, clown_loc.r_arm.position.x, clown_loc.r_arm.position.y, clown_loc.r_arm.width, clown_loc.r_arm.height, r_arm_x, r_arm_y, clown_loc.r_arm.width, clown_loc.r_arm.height)
-        ctx.drawImage(clown, clown_loc.l_arm.position.x, clown_loc.l_arm.position.y, clown_loc.l_arm.width, clown_loc.l_arm.height, l_arm_x, l_arm_y, clown_loc.l_arm.width, clown_loc.l_arm.height)
-        ctx.save()
-        ctx.translate(265,105) #head_x+(clown_loc.head.width/2) ,head_y+(clown_loc.head.height/2))
-        ctx.rotate(angle*to_rad)
-        ctx.drawImage(clown, clown_loc.head.position.x, clown_loc.head.position.y, clown_loc.head.width, clown_loc.head.height, -75,-85, clown_loc.head.width, clown_loc.head.height)
-        ctx.translate(-265,-105)
-        ctx.restore()
-        angle += 1
-      , 50
+      setTimeout ->
+        creepyAnimate()
+      , 5000
 
   class MusicPlayer
     constructor: ->
       tag = document.createElement('script')
-      # tag.src = "https://www.youtube.com/iframe_api"
+      tag.src = "https://www.youtube.com/iframe_api"
       tag.setAttribute("id", "youtube_api")
       firstScriptTag = document.getElementsByTagName('script')[0]
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag)
